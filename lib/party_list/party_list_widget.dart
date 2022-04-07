@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+class PartyListWidget extends StatefulWidget {
+  const PartyListWidget({Key key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _PartyListWidgetState createState() => _PartyListWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _PartyListWidgetState extends State<PartyListWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -27,7 +27,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          'Dashboard',
+          'Party List',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF232323),
