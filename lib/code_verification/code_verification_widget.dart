@@ -2,7 +2,7 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_page/home_page_widget.dart';
+import '../main.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -51,7 +51,8 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                 controller: phoneNumberController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  hintText: 'Enter 6 Digit Code Here',
+                  labelText: 'Enter the 6 digit code',
+                  hintText: '000000',
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.black,
@@ -114,7 +115,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomePageWidget(),
+                      builder: (context) => NavBarPage(initialPage: 'HomePage'),
                     ),
                     (r) => false,
                   );

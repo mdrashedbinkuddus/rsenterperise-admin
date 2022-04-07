@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/add_cost_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -8,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+class CostsWidget extends StatefulWidget {
+  const CostsWidget({Key key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _CostsWidgetState createState() => _CostsWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _CostsWidgetState extends State<CostsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -23,11 +24,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          'Dashboard',
+          'Costs',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF232323),
@@ -39,6 +40,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: AddCostWidget(),
+              );
+            },
+          );
+        },
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        elevation: 5,
+        child: Icon(
+          Icons.add,
+          color: FlutterFlowTheme.of(context).primaryColor,
+          size: 30,
+        ),
+      ),
       drawer: StreamBuilder<UserRecord>(
         stream: UserRecord.getDocument(currentUserReference),
         builder: (context, snapshot) {
