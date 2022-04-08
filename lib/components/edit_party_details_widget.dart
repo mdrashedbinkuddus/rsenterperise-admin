@@ -36,8 +36,13 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
   void initState() {
     super.initState();
     textController1 = TextEditingController(text: widget.partyName);
-    textController2 =
-        TextEditingController(text: widget.partyPhoneNumber.toString());
+    textController2 = TextEditingController(
+        text: formatNumber(
+      widget.partyPhoneNumber,
+      formatType: FormatType.custom,
+      format: '+88',
+      locale: '',
+    ));
   }
 
   @override
@@ -166,7 +171,7 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Image.network(
-                                    columnPartyListRecord.image,
+                                    widget.partyImage,
                                     width: 70,
                                     height: 70,
                                     fit: BoxFit.cover,

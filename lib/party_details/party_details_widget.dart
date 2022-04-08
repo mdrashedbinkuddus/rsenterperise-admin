@@ -45,16 +45,14 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
               onTap: () async {
                 await showModalBottomSheet(
                   isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
                   context: context,
                   builder: (context) {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
                         height: 410,
-                        child: EditPartyDetailsWidget(
-                          partyName: widget.partyName,
-                        ),
+                        child: EditPartyDetailsWidget(),
                       ),
                     );
                   },
