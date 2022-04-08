@@ -391,10 +391,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Image.network(
-                                    valueOrDefault<String>(
-                                      columnPartyListRecord.image,
-                                      'https://lh3.googleusercontent.com/a-/AOh14GhJGfZy-_SdnUOaOtNspvNTkCCVZakWhIBdcIYLwQ=s96-c-rg-br100',
-                                    ),
+                                    columnPartyListRecord.image,
                                     width: 70,
                                     height: 70,
                                     fit: BoxFit.cover,
