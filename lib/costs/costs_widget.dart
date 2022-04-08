@@ -442,9 +442,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                                   children: [
                                     Expanded(
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFEEEEEE),
-                                        ),
+                                        decoration: BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
