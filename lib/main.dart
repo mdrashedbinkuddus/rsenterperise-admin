@@ -10,6 +10,7 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:r_s_enterprise_admin/sign_in/sign_in_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'party_list/party_list_widget.dart';
@@ -123,47 +124,100 @@ class _NavBarPageState extends State<NavBarPage> {
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
-      bottomNavigationBar: BottomNavigationBar(
+      extendBody: true,
+      bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         backgroundColor: Colors.white,
         selectedItemColor: Colors.black,
-        unselectedItemColor: Color(0x8A000000),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.dashboard_sharp,
-              size: 26,
+        unselectedItemColor: Color(0x00000000),
+        selectedBackgroundColor: Color(0x00000000),
+        borderRadius: 8,
+        itemBorderRadius: 8,
+        margin: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+        width: double.infinity,
+        elevation: 0,
+        items: [
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.dashboard_sharp,
+                  color: currentIndex == 0 ? Colors.black : Color(0x00000000),
+                  size: 24,
+                ),
+                Text(
+                  'Dashboard',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 0 ? Colors.black : Color(0x00000000),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            label: 'Dashboard',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.people_sharp,
-              size: 26,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.people_sharp,
+                  color: currentIndex == 1 ? Colors.black : Color(0x00000000),
+                  size: 24,
+                ),
+                Text(
+                  'Party',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 1 ? Colors.black : Color(0x00000000),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            label: 'Party',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.flight_takeoff_rounded,
-              size: 26,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.flight_takeoff_rounded,
+                  color: currentIndex == 2 ? Colors.black : Color(0x00000000),
+                  size: 24,
+                ),
+                Text(
+                  'Shipment',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 2 ? Colors.black : Color(0x00000000),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            label: 'Shipment',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.attach_money_rounded,
-              size: 26,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.attach_money_rounded,
+                  color: currentIndex == 3 ? Colors.black : Color(0x00000000),
+                  size: 24,
+                ),
+                Text(
+                  'Costs',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 3 ? Colors.black : Color(0x00000000),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            label: 'Costs',
-            tooltip: '',
           )
         ],
       ),

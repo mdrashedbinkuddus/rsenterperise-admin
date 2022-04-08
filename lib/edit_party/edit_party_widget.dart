@@ -31,13 +31,8 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
   void initState() {
     super.initState();
     textController1 = TextEditingController(text: widget.partyName);
-    textController2 = TextEditingController(
-        text: formatNumber(
-      widget.partyNumber,
-      formatType: FormatType.custom,
-      format: '+88',
-      locale: '',
-    ));
+    textController2 =
+        TextEditingController(text: widget.partyNumber.toString());
   }
 
   @override
