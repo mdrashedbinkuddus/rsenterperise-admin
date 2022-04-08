@@ -54,7 +54,10 @@ class _CostsWidgetState extends State<CostsWidget> {
                   builder: (context) {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
-                      child: AddCostWidget(),
+                      child: Container(
+                        height: 500,
+                        child: AddCostWidget(),
+                      ),
                     );
                   },
                 );
@@ -365,7 +368,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                               child: Text(
                                 valueOrDefault<String>(
                                   dateTimeFormat('MMMEd', datePicked),
-                                  'relative',
+                                  'Today',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -427,125 +430,151 @@ class _CostsWidgetState extends State<CostsWidget> {
                     width: MediaQuery.of(context).size.width,
                     height: double.infinity,
                     decoration: BoxDecoration(),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          ListView(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        decoration: BoxDecoration(),
-                                        child: Column(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        StreamBuilder<List<CostsRecord>>(
+                          stream: queryCostsRecord(
+                            queryBuilder: (costsRecord) => costsRecord
+                                .where('date', isEqualTo: widget.date),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitDoubleBounce(
+                                    color: Colors.black,
+                                    size: 50,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<CostsRecord> columnCostsRecordList =
+                                snapshot.data;
+                            return SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children:
+                                    List.generate(columnCostsRecordList.length,
+                                        (columnIndex) {
+                                  final columnCostsRecord =
+                                      columnCostsRecordList[columnIndex];
+                                  return ListView(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 10),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'Tax Fee',
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
+                                            Expanded(
+                                              child: Container(
+                                                decoration: BoxDecoration(),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Tax Fee',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Invoice No: 2586',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Icon(
-                                                  Icons.attach_file_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .lineColor,
-                                                  size: 18,
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                             Text(
-                                              'Invoice No: 2586',
+                                              '\$4,000',
+                                              textAlign: TextAlign.end,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1
                                                       .override(
                                                         fontFamily: 'Poppins',
+                                                        fontSize: 18,
                                                         fontWeight:
-                                                            FontWeight.w300,
+                                                            FontWeight.w600,
                                                       ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      '\$4,000',
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  );
+                                }),
                               ),
-                            ],
-                          ),
-                          Divider(
-                            height: 1,
-                            thickness: 1,
-                            color: Color(0xFFA4A4A4),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    'Total',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                                Text(
-                                  '\$78,000',
-                                  textAlign: TextAlign.end,
+                            );
+                          },
+                        ),
+                        Divider(
+                          height: 1,
+                          thickness: 1,
+                          color: Color(0xFFA4A4A4),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Total',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Text(
+                                '\$78,000',
+                                textAlign: TextAlign.end,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

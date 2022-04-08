@@ -18,6 +18,7 @@ class _AddCostWidgetState extends State<AddCostWidget> {
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
+  TextEditingController textController4;
 
   @override
   void initState() {
@@ -26,13 +27,14 @@ class _AddCostWidgetState extends State<AddCostWidget> {
         text: dateTimeFormat('yMMMd', getCurrentTimestamp));
     textController2 = TextEditingController();
     textController3 = TextEditingController();
+    textController4 = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 410,
+      height: 450,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -102,7 +104,7 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                 controller: textController2,
                 obscureText: false,
                 decoration: InputDecoration(
-                  hintText: 'Description',
+                  labelText: 'Invoice No',
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primaryBtnText,
@@ -127,7 +129,32 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                 controller: textController3,
                 obscureText: false,
                 decoration: InputDecoration(
-                  hintText: 'Amount',
+                  labelText: 'Description',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primaryBtnText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primaryBtnText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                style: FlutterFlowTheme.of(context).bodyText1,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
+              child: TextFormField(
+                controller: textController4,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Amount',
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primaryBtnText,
