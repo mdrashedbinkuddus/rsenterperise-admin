@@ -114,8 +114,11 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
 
                   await Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => NavBarPage(initialPage: 'HomePage'),
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                      reverseDuration: Duration(milliseconds: 0),
+                      child: NavBarPage(initialPage: 'HomePage'),
                     ),
                     (r) => false,
                   );

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "972147065763-6i0801gspr4rpennui0ers4rguq9vj72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.rsenterpriseadmin",
+            "certificate_hash": "39e02c52f4fefe325aae9387c0d77cdd19853fd1"
+          }
+        },
+        {
           "client_id": "972147065763-gm507fi5l6ubmi9eupshn6m02e7fs584.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

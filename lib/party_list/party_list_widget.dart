@@ -306,9 +306,11 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               await signOut();
                               await Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      NavBarPage(initialPage: 'SignIn'),
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: NavBarPage(initialPage: 'SignIn'),
                                 ),
                                 (r) => false,
                               );
@@ -365,8 +367,11 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                         onTap: () async {
                           await Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => PartyDetailsWidget(
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                              reverseDuration: Duration(milliseconds: 0),
+                              child: PartyDetailsWidget(
                                 partyName: columnPartyListRecord.name,
                                 partyImage: columnPartyListRecord.image,
                               ),
