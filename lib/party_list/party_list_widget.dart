@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../party_details/party_details_widget.dart';
+import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -310,7 +311,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                   type: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
                                   reverseDuration: Duration(milliseconds: 0),
-                                  child: NavBarPage(initialPage: 'SignIn'),
+                                  child: SignInWidget(),
                                 ),
                                 (r) => false,
                               );
@@ -391,7 +392,10 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Image.network(
-                                    columnPartyListRecord.image,
+                                    valueOrDefault<String>(
+                                      columnPartyListRecord.image,
+                                      'https://lh3.googleusercontent.com/a-/AOh14GhJGfZy-_SdnUOaOtNspvNTkCCVZakWhIBdcIYLwQ=s96-c-rg-br100',
+                                    ),
                                     width: 70,
                                     height: 70,
                                     fit: BoxFit.cover,

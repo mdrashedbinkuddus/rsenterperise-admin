@@ -11,7 +11,6 @@ import 'flutter_flow/internationalization.dart';
 import 'package:r_s_enterprise_admin/sign_in/sign_in_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'sign_in/sign_in_widget.dart';
 import 'home_page/home_page_widget.dart';
 import 'party_list/party_list_widget.dart';
 import 'shipment/shipment_widget.dart';
@@ -116,7 +115,6 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'SignIn': SignInWidget(),
       'HomePage': HomePageWidget(),
       'PartyList': PartyListWidget(),
       'Shipment': ShipmentWidget(),
@@ -135,14 +133,6 @@ class _NavBarPageState extends State<NavBarPage> {
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 24,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.dashboard_sharp,
