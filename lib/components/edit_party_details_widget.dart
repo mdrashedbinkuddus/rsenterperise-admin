@@ -13,12 +13,10 @@ class EditPartyDetailsWidget extends StatefulWidget {
     Key key,
     this.partyName,
     this.partyPhoneNumber,
-    this.partyImage,
   }) : super(key: key);
 
   final String partyName;
   final int partyPhoneNumber;
-  final String partyImage;
 
   @override
   _EditPartyDetailsWidgetState createState() => _EditPartyDetailsWidgetState();
