@@ -1,6 +1,9 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -169,11 +172,6 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  suffixIcon: Icon(
-                    Icons.attach_money_rounded,
-                    color: Color(0xFF757575),
-                    size: 22,
-                  ),
                 ),
                 style: FlutterFlowTheme.of(context).bodyText1,
                 keyboardType: TextInputType.number,
@@ -207,8 +205,14 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      final costsCreateData = createCostsRecordData(
+                        date: datePicked,
+                        description: textController3.text,
+                        amount: double.parse(textController4.text),
+                        invoiceNo: int.parse(textController2.text),
+                      );
+                      await CostsRecord.collection.doc().set(costsCreateData);
                     },
                     text: 'Add Cost',
                     options: FFButtonOptions(

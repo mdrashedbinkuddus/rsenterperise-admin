@@ -499,24 +499,43 @@ class _CostsWidgetState extends State<CostsWidget> {
                                                                 FontWeight.w500,
                                                           ),
                                                     ),
-                                                    Text(
-                                                      'Invoice No: 2586',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontWeight:
-                                                                FontWeight.w300,
-                                                          ),
-                                                    ),
+                                                    if (columnCostsRecord
+                                                            .invoiceNo !=
+                                                        null)
+                                                      Text(
+                                                        formatNumber(
+                                                          columnCostsRecord
+                                                              .invoiceNo,
+                                                          formatType:
+                                                              FormatType.custom,
+                                                          format:
+                                                              'Invoice No: ',
+                                                          locale: '',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                ),
+                                                      ),
                                                   ],
                                                 ),
                                               ),
                                             ),
                                             Text(
-                                              '\$4,000',
+                                              formatNumber(
+                                                columnCostsRecord.amount,
+                                                formatType: FormatType.custom,
+                                                currency: '৳',
+                                                format: '',
+                                                locale: '',
+                                              ),
                                               textAlign: TextAlign.end,
                                               style:
                                                   FlutterFlowTheme.of(context)
