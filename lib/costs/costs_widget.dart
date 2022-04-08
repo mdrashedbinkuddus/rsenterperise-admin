@@ -336,7 +336,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                 child: Material(
                   color: Colors.transparent,
-                  elevation: 10,
+                  elevation: 2,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -423,9 +423,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEEEEEE),
-                    ),
+                    decoration: BoxDecoration(),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,

@@ -382,7 +382,6 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                         child: Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           color: Color(0xFFF5F5F5),
-                          elevation: 8,
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
