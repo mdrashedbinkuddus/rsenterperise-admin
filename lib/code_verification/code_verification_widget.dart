@@ -34,7 +34,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryBtnText,
+          color: FlutterFlowTheme.of(context).primaryColor,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -122,8 +122,8 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                 },
                 text: 'Verify Code',
                 options: FFButtonOptions(
-                  width: 230,
-                  height: 60,
+                  width: 200,
+                  height: 50,
                   color: Colors.white,
                   textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                         fontFamily: 'Lexend Deca',
@@ -131,7 +131,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
-                  elevation: 1,
+                  elevation: 5,
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,

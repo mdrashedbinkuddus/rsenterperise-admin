@@ -4,7 +4,6 @@ import '../components/add_cost_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
-import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -302,7 +301,8 @@ class _CostsWidgetState extends State<CostsWidget> {
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignInWidget(),
+                                  builder: (context) =>
+                                      NavBarPage(initialPage: 'SignIn'),
                                 ),
                                 (r) => false,
                               );
