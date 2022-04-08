@@ -42,6 +42,10 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
           );
         }
         List<PartyListRecord> partyDetailsPartyListRecordList = snapshot.data;
+        // Return an empty Container when the document does not exist.
+        if (snapshot.data.isEmpty) {
+          return Container();
+        }
         final partyDetailsPartyListRecord =
             partyDetailsPartyListRecordList.isNotEmpty
                 ? partyDetailsPartyListRecordList.first
@@ -89,7 +93,11 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                           padding: MediaQuery.of(context).viewInsets,
                           child: Container(
                             height: 410,
-                            child: EditPartyDetailsWidget(),
+                            child: EditPartyDetailsWidget(
+                              partyName: partyDetailsPartyListRecord.name,
+                              partyPhoneNumber:
+                                  partyDetailsPartyListRecord.phone,
+                            ),
                           ),
                         );
                       },

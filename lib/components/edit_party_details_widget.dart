@@ -30,6 +30,7 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
   @override
   void initState() {
     super.initState();
+    textController1 = TextEditingController(text: widget.partyName);
     textController2 = TextEditingController(
         text: formatNumber(
       widget.partyPhoneNumber,
@@ -96,10 +97,7 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              controller: textController1 ??=
-                                  TextEditingController(
-                                text: columnPartyListRecord.name,
-                              ),
+                              controller: textController1,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Party Name',
@@ -188,8 +186,8 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                             onPressed: () async {
                               final partyListUpdateData =
                                   createPartyListRecordData(
-                                name: columnPartyListRecord.name,
-                                phone: columnPartyListRecord.phone,
+                                name: widget.partyName,
+                                phone: widget.partyPhoneNumber,
                               );
                               await columnPartyListRecord.reference
                                   .update(partyListUpdateData);
