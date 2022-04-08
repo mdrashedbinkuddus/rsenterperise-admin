@@ -28,6 +28,18 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
   final formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    textController2 = TextEditingController(
+        text: formatNumber(
+      widget.partyPhoneNumber,
+      formatType: FormatType.custom,
+      format: '+88',
+      locale: '',
+    ));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
@@ -116,14 +128,7 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
                       child: TextFormField(
-                        controller: textController2 ??= TextEditingController(
-                          text: formatNumber(
-                            columnPartyListRecord.phone,
-                            formatType: FormatType.custom,
-                            format: '+88',
-                            locale: '',
-                          ),
-                        ),
+                        controller: textController2,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Phone',
