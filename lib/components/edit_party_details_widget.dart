@@ -1,10 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -27,7 +25,6 @@ class EditPartyDetailsWidget extends StatefulWidget {
 }
 
 class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
-  String uploadedFileUrl = '';
   TextEditingController textController1;
   TextEditingController textController2;
   final formKey = GlobalKey<FormState>();
@@ -88,92 +85,32 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                              child: TextFormField(
-                                controller: textController1 ??=
-                                    TextEditingController(
-                                  text: columnPartyListRecord.name,
-                                ),
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Party Name',
-                                  hintText: 'Full Party Name',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFA4A4A4),
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFA4A4A4),
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                style: FlutterFlowTheme.of(context).bodyText1,
+                            child: TextFormField(
+                              controller: textController1 ??=
+                                  TextEditingController(
+                                text: columnPartyListRecord.name,
                               ),
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Party Name',
+                                hintText: 'Full Party Name',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFA4A4A4),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFA4A4A4),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
-                          ),
-                          Stack(
-                            alignment: AlignmentDirectional(0, 0),
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    allowPhoto: true,
-                                  );
-                                  if (selectedMedia != null &&
-                                      validateFileFormat(
-                                          selectedMedia.storagePath, context)) {
-                                    showUploadMessage(
-                                      context,
-                                      'Uploading file...',
-                                      showLoading: true,
-                                    );
-                                    final downloadUrl = await uploadData(
-                                        selectedMedia.storagePath,
-                                        selectedMedia.bytes);
-                                    ScaffoldMessenger.of(context)
-                                        .hideCurrentSnackBar();
-                                    if (downloadUrl != null) {
-                                      setState(
-                                          () => uploadedFileUrl = downloadUrl);
-                                      showUploadMessage(
-                                        context,
-                                        'Success!',
-                                      );
-                                    } else {
-                                      showUploadMessage(
-                                        context,
-                                        'Failed to upload media',
-                                      );
-                                      return;
-                                    }
-                                  }
-                                },
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    columnPartyListRecord.image,
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.camera_alt_rounded,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ],
                           ),
                         ],
                       ),
@@ -250,7 +187,6 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                                   createPartyListRecordData(
                                 name: widget.partyName,
                                 phone: widget.partyPhoneNumber,
-                                image: uploadedFileUrl,
                               );
                               await columnPartyListRecord.reference
                                   .update(partyListUpdateData);

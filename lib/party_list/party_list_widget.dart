@@ -11,16 +11,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartyListWidget extends StatefulWidget {
-  const PartyListWidget({
-    Key key,
-    this.partyName,
-    this.partyPhoneNumber,
-    this.partyImage,
-  }) : super(key: key);
-
-  final String partyName;
-  final int partyPhoneNumber;
-  final String partyImage;
+  const PartyListWidget({Key key}) : super(key: key);
 
   @override
   _PartyListWidgetState createState() => _PartyListWidgetState();
@@ -336,10 +327,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: StreamBuilder<List<PartyListRecord>>(
-            stream: queryPartyListRecord(
-              queryBuilder: (partyListRecord) =>
-                  partyListRecord.orderBy('name'),
-            ),
+            stream: queryPartyListRecord(),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
@@ -363,7 +351,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                     final columnPartyListRecord =
                         columnPartyListRecordList[columnIndex];
                     return Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
                       child: InkWell(
                         onTap: () async {
                           await Navigator.push(
@@ -374,59 +362,50 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               reverseDuration: Duration(milliseconds: 0),
                               child: PartyDetailsWidget(
                                 partyName: columnPartyListRecord.name,
-                                partyImage: columnPartyListRecord.image,
                               ),
                             ),
                           );
                         },
                         child: Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: Color(0xFFF5F5F5),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10, 10, 10, 10),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    columnPartyListRecord.image,
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
+                          color: Colors.white,
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        columnPartyListRecord.name,
+                                        style: FlutterFlowTheme.of(context)
+                                            .title1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 18,
+                                            ),
+                                      ),
+                                      Text(
+                                        formatNumber(
+                                          columnPartyListRecord.phone,
+                                          formatType: FormatType.custom,
+                                          format: '+88',
+                                          locale: '',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      columnPartyListRecord.name,
-                                      style: FlutterFlowTheme.of(context)
-                                          .title1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                          ),
-                                    ),
-                                    Text(
-                                      formatNumber(
-                                        columnPartyListRecord.phone,
-                                        formatType: FormatType.custom,
-                                        format: '+88',
-                                        locale: '',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

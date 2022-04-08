@@ -44,10 +44,6 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
           );
         }
         List<PartyListRecord> partyDetailsPartyListRecordList = snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
         final partyDetailsPartyListRecord =
             partyDetailsPartyListRecordList.isNotEmpty
                 ? partyDetailsPartyListRecordList.first
