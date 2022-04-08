@@ -11,12 +11,10 @@ import 'package:google_fonts/google_fonts.dart';
 class EditPartyWidget extends StatefulWidget {
   const EditPartyWidget({
     Key key,
-    this.partyImage,
     this.partyName,
     this.partyNumber,
   }) : super(key: key);
 
-  final String partyImage;
   final String partyName;
   final int partyNumber;
 
@@ -98,7 +96,7 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
                 child: InkWell(
                   onTap: () async {
                     final partyListUpdateData = createPartyListRecordData(
-                      name: textController2.text,
+                      name: textController1.text,
                       phone: int.parse(textController2.text),
                     );
                     await editPartyPartyListRecord.reference

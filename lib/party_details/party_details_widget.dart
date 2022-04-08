@@ -94,7 +94,6 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                         duration: Duration(milliseconds: 300),
                         reverseDuration: Duration(milliseconds: 300),
                         child: EditPartyWidget(
-                          partyImage: widget.partyImage,
                           partyName: widget.partyName,
                           partyNumber: widget.partyNumber,
                         ),
