@@ -485,7 +485,8 @@ class _CostsWidgetState extends State<CostsWidget> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Tax Fee',
+                                                      columnCostsRecord
+                                                          .description,
                                                       textAlign:
                                                           TextAlign.start,
                                                       style: FlutterFlowTheme
@@ -544,7 +545,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                                                         fontFamily: 'Poppins',
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                            FontWeight.w500,
                                                       ),
                                             ),
                                           ],

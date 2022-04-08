@@ -17,20 +17,19 @@ class AddCostWidget extends StatefulWidget {
 }
 
 class _AddCostWidgetState extends State<AddCostWidget> {
-  DateTime datePicked;
-  TextEditingController textController1;
-  TextEditingController textController2;
-  TextEditingController textController3;
-  TextEditingController textController4;
+  DateTime datePicked1;
+  DateTime datePicked2;
+  TextEditingController invoiceNumberController;
+  TextEditingController descriptionController;
+  TextEditingController amountController;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController(
-        text: dateTimeFormat('yMMMd', getCurrentTimestamp));
-    textController2 = TextEditingController();
-    textController3 = TextEditingController();
-    textController4 = TextEditingController();
+    amountController = TextEditingController();
+    descriptionController = TextEditingController();
+    invoiceNumberController = TextEditingController();
   }
 
   @override
@@ -59,122 +58,163 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                     fontWeight: FontWeight.w500,
                   ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-              child: TextFormField(
-                onFieldSubmitted: (_) async {
-                  await DatePicker.showDatePicker(
-                    context,
-                    showTitleActions: true,
-                    onConfirm: (date) {
-                      setState(() => datePicked = date);
-                    },
-                    currentTime: getCurrentTimestamp,
-                    minTime: DateTime(0, 0, 0),
-                  );
-                },
-                controller: textController1,
-                obscureText: false,
-                decoration: InputDecoration(
-                  hintText: 'Date',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
+            Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            await DatePicker.showDatePicker(
+                              context,
+                              showTitleActions: true,
+                              onConfirm: (date) {
+                                setState(() => datePicked1 = date);
+                              },
+                              currentTime: getCurrentTimestamp,
+                              minTime: getCurrentTimestamp,
+                            );
+                          },
+                          child: Text(
+                            dateTimeFormat('MMMMEEEEd', getCurrentTimestamp),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await DatePicker.showDatePicker(
+                                context,
+                                showTitleActions: true,
+                                onConfirm: (date) {
+                                  setState(() => datePicked2 = date);
+                                },
+                                currentTime: getCurrentTimestamp,
+                                minTime: getCurrentTimestamp,
+                              );
+                            },
+                            child: Icon(
+                              Icons.calendar_today_rounded,
+                              color: Colors.black,
+                              size: 26,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                    child: TextFormField(
+                      controller: invoiceNumberController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: 'Invoice No',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                      keyboardType: TextInputType.number,
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Field is required';
+                        }
+
+                        return null;
+                      },
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                  suffixIcon: Icon(
-                    Icons.calendar_today,
-                    color: Color(0xFF757575),
-                    size: 22,
-                  ),
-                ),
-                style: FlutterFlowTheme.of(context).bodyText1,
-                keyboardType: TextInputType.datetime,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-              child: TextFormField(
-                controller: textController2,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Invoice No',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                    child: TextFormField(
+                      controller: descriptionController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: 'Description',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Field is required';
+                        }
+
+                        return null;
+                      },
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
+                    child: TextFormField(
+                      controller: amountController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: 'Amount',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                      keyboardType: TextInputType.number,
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return 'Field is required';
+                        }
+
+                        return null;
+                      },
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
-                style: FlutterFlowTheme.of(context).bodyText1,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-              child: TextFormField(
-                controller: textController3,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                style: FlutterFlowTheme.of(context).bodyText1,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
-              child: TextFormField(
-                controller: textController4,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Amount',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                style: FlutterFlowTheme.of(context).bodyText1,
-                keyboardType: TextInputType.number,
+                ],
               ),
             ),
             Expanded(
@@ -207,10 +247,10 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       final costsCreateData = createCostsRecordData(
-                        date: datePicked,
-                        description: textController3.text,
-                        amount: double.parse(textController4.text),
-                        invoiceNo: int.parse(textController2.text),
+                        date: datePicked2,
+                        description: descriptionController.text,
+                        amount: double.parse(amountController.text),
+                        invoiceNo: int.parse(invoiceNumberController.text),
                       );
                       await CostsRecord.collection.doc().set(costsCreateData);
                     },
