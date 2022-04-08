@@ -363,7 +363,10 @@ class _CostsWidgetState extends State<CostsWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   20, 20, 20, 20),
                               child: Text(
-                                'Today',
+                                valueOrDefault<String>(
+                                  dateTimeFormat('MMMEd', datePicked),
+                                  'relative',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(

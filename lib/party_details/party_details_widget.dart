@@ -177,7 +177,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                           formatNumber(
                                             partyDetailsPartyListRecord.phone,
                                             formatType: FormatType.custom,
-                                            format: '+88',
+                                            format: '+880',
                                             locale: '',
                                           ),
                                           style: FlutterFlowTheme.of(context)
