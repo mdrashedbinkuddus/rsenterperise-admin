@@ -92,7 +92,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                     child: Container(
                       width: 100,
                       decoration: BoxDecoration(
-                        color: Color(0xFFEEEEEE),
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         boxShadow: [
                           BoxShadow(
                             color: FlutterFlowTheme.of(context).lineColor,
@@ -112,7 +112,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Image.network(
-                                'https://picsum.photos/seed/968/600',
+                                widget.partyImage,
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.cover,

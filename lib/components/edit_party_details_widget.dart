@@ -166,7 +166,7 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Image.network(
-                                    widget.partyImage,
+                                    columnPartyListRecord.image,
                                     width: 70,
                                     height: 70,
                                     fit: BoxFit.cover,
