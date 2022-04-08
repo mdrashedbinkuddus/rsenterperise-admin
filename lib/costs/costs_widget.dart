@@ -455,6 +455,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                             List<CostsRecord> columnCostsRecordList =
                                 snapshot.data;
                             return SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children:

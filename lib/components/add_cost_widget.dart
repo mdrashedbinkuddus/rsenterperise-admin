@@ -240,6 +240,7 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                         invoiceNo: int.parse(invoiceNumberController.text),
                       );
                       await CostsRecord.collection.doc().set(costsCreateData);
+                      Navigator.pop(context);
                     },
                     text: 'Add Cost',
                     options: FFButtonOptions(
