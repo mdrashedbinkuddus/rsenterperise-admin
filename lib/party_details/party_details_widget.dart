@@ -72,6 +72,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                 child: InkWell(
                   onTap: () async {
                     await partyDetailsPartyListRecord.reference.delete();
+                    Navigator.pop(context);
                   },
                   child: Icon(
                     Icons.delete,
