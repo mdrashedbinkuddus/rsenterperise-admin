@@ -362,6 +362,8 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               reverseDuration: Duration(milliseconds: 0),
                               child: PartyDetailsWidget(
                                 partyName: columnPartyListRecord.name,
+                                partyNumber: columnPartyListRecord.phone,
+                                partyImage: columnPartyListRecord.partyImage,
                               ),
                             ),
                           );
@@ -375,33 +377,51 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5, 5, 5, 5),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network(
+                                      columnPartyListRecord.partyImage,
+                                      width: 60,
+                                      height: 60,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                                 Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        columnPartyListRecord.name,
-                                        style: FlutterFlowTheme.of(context)
-                                            .title1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 18,
-                                            ),
-                                      ),
-                                      Text(
-                                        formatNumber(
-                                          columnPartyListRecord.phone,
-                                          formatType: FormatType.custom,
-                                          format: '+88',
-                                          locale: '',
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 0, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          columnPartyListRecord.name,
+                                          style: FlutterFlowTheme.of(context)
+                                              .title1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18,
+                                              ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ],
+                                        Text(
+                                          formatNumber(
+                                            columnPartyListRecord.phone,
+                                            formatType: FormatType.custom,
+                                            format: '+88',
+                                            locale: '',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],

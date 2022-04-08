@@ -1,5 +1,5 @@
 import '../backend/backend.dart';
-import '../components/edit_party_details_widget.dart';
+import '../edit_party/edit_party_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +10,13 @@ class PartyDetailsWidget extends StatefulWidget {
   const PartyDetailsWidget({
     Key key,
     this.partyName,
+    this.partyNumber,
+    this.partyImage,
   }) : super(key: key);
 
   final String partyName;
+  final int partyNumber;
+  final String partyImage;
 
   @override
   _PartyDetailsWidgetState createState() => _PartyDetailsWidgetState();
@@ -83,24 +87,18 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                 child: InkWell(
                   onTap: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).primaryColor,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.of(context).viewInsets,
-                          child: Container(
-                            height: 410,
-                            child: EditPartyDetailsWidget(
-                              partyName: partyDetailsPartyListRecord.name,
-                              partyPhoneNumber:
-                                  partyDetailsPartyListRecord.phone,
-                            ),
-                          ),
-                        );
-                      },
+                    await Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        duration: Duration(milliseconds: 300),
+                        reverseDuration: Duration(milliseconds: 300),
+                        child: EditPartyWidget(
+                          partyImage: widget.partyImage,
+                          partyName: widget.partyName,
+                          partyNumber: widget.partyNumber,
+                        ),
+                      ),
                     );
                   },
                   child: Icon(
@@ -128,7 +126,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                       child: Material(
                         color: Colors.transparent,
-                        elevation: 5,
+                        elevation: 2,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -151,11 +149,48 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                 EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(
-                                  widget.partyName,
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.network(
+                                    widget.partyImage,
+                                    width: 60,
+                                    height: 60,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 0, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          widget.partyName,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18,
+                                              ),
+                                        ),
+                                        Text(
+                                          formatNumber(
+                                            widget.partyNumber,
+                                            formatType: FormatType.custom,
+                                            format: '+88',
+                                            locale: '',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -163,7 +198,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                   child: Icon(
                                     Icons.call,
                                     color: Colors.black,
-                                    size: 30,
+                                    size: 26,
                                   ),
                                 ),
                               ],
