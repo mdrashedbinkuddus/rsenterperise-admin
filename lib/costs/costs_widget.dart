@@ -430,151 +430,144 @@ class _CostsWidgetState extends State<CostsWidget> {
                     width: MediaQuery.of(context).size.width,
                     height: double.infinity,
                     decoration: BoxDecoration(),
-                    child: SingleChildScrollView(
-                      primary: false,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          StreamBuilder<List<CostsRecord>>(
-                            stream: queryCostsRecord(
-                              queryBuilder: (costsRecord) => costsRecord
-                                  .where('date', isEqualTo: widget.date),
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: SpinKitDoubleBounce(
-                                      color: Colors.black,
-                                      size: 50,
-                                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        StreamBuilder<List<CostsRecord>>(
+                          stream: queryCostsRecord(
+                            queryBuilder: (costsRecord) => costsRecord
+                                .where('date', isEqualTo: widget.date),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitDoubleBounce(
+                                    color: Colors.black,
+                                    size: 50,
                                   ),
-                                );
-                              }
-                              List<CostsRecord> columnCostsRecordList =
-                                  snapshot.data;
-                              return SingleChildScrollView(
-                                primary: false,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: List.generate(
-                                      columnCostsRecordList.length,
-                                      (columnIndex) {
-                                    final columnCostsRecord =
-                                        columnCostsRecordList[columnIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 10),
-                                      child: Card(
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        color: Color(0xFFF5F5F5),
-                                        elevation: 0,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  columnCostsRecord.description,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .subtitle2,
-                                                ),
-                                                Text(
-                                                  formatNumber(
-                                                    columnCostsRecord.invoiceNo,
-                                                    formatType:
-                                                        FormatType.custom,
-                                                    format: 'Invoice no: ',
-                                                    locale: '',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              formatNumber(
-                                                columnCostsRecord.amount,
-                                                formatType: FormatType.custom,
-                                                currency: '৳',
-                                                format: '',
-                                                locale: '',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 16,
-                                                      ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }),
                                 ),
                               );
-                            },
-                          ),
-                          Divider(
-                            height: 1,
-                            thickness: 1,
-                            color: Color(0xFFA4A4A4),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    'Total',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                                Text(
-                                  '\$78,000',
-                                  textAlign: TextAlign.end,
+                            }
+                            List<CostsRecord> columnCostsRecordList =
+                                snapshot.data;
+                            return SingleChildScrollView(
+                              primary: false,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children:
+                                    List.generate(columnCostsRecordList.length,
+                                        (columnIndex) {
+                                  final columnCostsRecord =
+                                      columnCostsRecordList[columnIndex];
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 10),
+                                    child: Card(
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      color: Color(0xFFF5F5F5),
+                                      elevation: 0,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                columnCostsRecord.description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2,
+                                              ),
+                                              Text(
+                                                formatNumber(
+                                                  columnCostsRecord.invoiceNo,
+                                                  formatType: FormatType.custom,
+                                                  format: 'Invoice no: ',
+                                                  locale: '',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                          Text(
+                                            formatNumber(
+                                              columnCostsRecord.amount,
+                                              formatType: FormatType.custom,
+                                              currency: '৳',
+                                              format: '',
+                                              locale: '',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 16,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ),
+                            );
+                          },
+                        ),
+                        Divider(
+                          height: 1,
+                          thickness: 1,
+                          color: Color(0xFFA4A4A4),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Total',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Text(
+                                '\$78,000',
+                                textAlign: TextAlign.end,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
