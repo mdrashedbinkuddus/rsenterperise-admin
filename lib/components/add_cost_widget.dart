@@ -17,8 +17,7 @@ class AddCostWidget extends StatefulWidget {
 }
 
 class _AddCostWidgetState extends State<AddCostWidget> {
-  DateTime datePicked1;
-  DateTime datePicked2;
+  DateTime datePicked;
   TextEditingController invoiceNumberController;
   TextEditingController descriptionController;
   TextEditingController amountController;
@@ -66,24 +65,24 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                 children: [
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () async {
-                            await DatePicker.showDatePicker(
-                              context,
-                              showTitleActions: true,
-                              onConfirm: (date) {
-                                setState(() => datePicked1 = date);
-                              },
-                              currentTime: getCurrentTimestamp,
-                              minTime: getCurrentTimestamp,
-                            );
+                    child: InkWell(
+                      onTap: () async {
+                        await DatePicker.showDatePicker(
+                          context,
+                          showTitleActions: true,
+                          onConfirm: (date) {
+                            setState(() => datePicked = date);
                           },
-                          child: Text(
-                            dateTimeFormat('MMMMEEEEd', getCurrentTimestamp),
+                          currentTime: getCurrentTimestamp,
+                          minTime: getCurrentTimestamp,
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            dateTimeFormat('yMMMd', datePicked),
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -91,29 +90,17 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                          child: InkWell(
-                            onTap: () async {
-                              await DatePicker.showDatePicker(
-                                context,
-                                showTitleActions: true,
-                                onConfirm: (date) {
-                                  setState(() => datePicked2 = date);
-                                },
-                                currentTime: getCurrentTimestamp,
-                                minTime: getCurrentTimestamp,
-                              );
-                            },
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                             child: Icon(
                               Icons.calendar_today_rounded,
                               color: Colors.black,
                               size: 26,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -247,7 +234,7 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       final costsCreateData = createCostsRecordData(
-                        date: datePicked2,
+                        date: datePicked,
                         description: descriptionController.text,
                         amount: double.parse(amountController.text),
                         invoiceNo: int.parse(invoiceNumberController.text),
