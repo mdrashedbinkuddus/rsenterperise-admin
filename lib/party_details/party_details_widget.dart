@@ -10,11 +10,9 @@ class PartyDetailsWidget extends StatefulWidget {
   const PartyDetailsWidget({
     Key key,
     this.partyName,
-    this.partyImage,
   }) : super(key: key);
 
   final String partyName;
-  final String partyImage;
 
   @override
   _PartyDetailsWidgetState createState() => _PartyDetailsWidgetState();
@@ -147,14 +145,9 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    widget.partyImage,
-                                    width: 70,
-                                    height: 70,
-                                    fit: BoxFit.cover,
-                                  ),
+                                Text(
+                                  widget.partyName,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
