@@ -363,7 +363,6 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               child: PartyDetailsWidget(
                                 partyName: columnPartyListRecord.name,
                                 partyNumber: columnPartyListRecord.phone,
-                                partyImage: columnPartyListRecord.partyImage,
                               ),
                             ),
                           );
@@ -377,19 +376,6 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 5, 5, 5),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network(
-                                      columnPartyListRecord.partyImage,
-                                      width: 60,
-                                      height: 60,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -401,14 +387,19 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          columnPartyListRecord.name,
-                                          style: FlutterFlowTheme.of(context)
-                                              .title1
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 18,
-                                              ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 8),
+                                          child: Text(
+                                            columnPartyListRecord.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .title1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 18,
+                                                ),
+                                          ),
                                         ),
                                         Text(
                                           formatNumber(
