@@ -183,8 +183,8 @@ class _EditPartyDetailsWidgetState extends State<EditPartyDetailsWidget> {
                             onPressed: () async {
                               final partyListUpdateData =
                                   createPartyListRecordData(
-                                name: columnPartyListRecord.name,
-                                phone: columnPartyListRecord.phone,
+                                name: widget.partyName,
+                                phone: widget.partyPhoneNumber,
                               );
                               await columnPartyListRecord.reference
                                   .update(partyListUpdateData);
