@@ -3,7 +3,7 @@ import '../code_verification/code_verification_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_page/home_page_widget.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -139,7 +139,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                             await Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePageWidget(),
+                                builder: (context) =>
+                                    NavBarPage(initialPage: 'HomePage'),
                               ),
                               (r) => false,
                             );
@@ -159,10 +160,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                               color: Color(0xFF606060),
                               fontSize: 17,
                             ),
-                            elevation: 1,
+                            elevation: 5,
                             borderSide: BorderSide(
                               color: Colors.transparent,
-                              width: 0,
+                              width: 1,
                             ),
                             borderRadius: 5,
                           ),
