@@ -61,7 +61,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
             iconTheme: IconThemeData(color: Colors.black),
             automaticallyImplyLeading: true,
             title: Text(
-              widget.partyName,
+              partyDetailsPartyListRecord.name,
               style: FlutterFlowTheme.of(context).title2.override(
                     fontFamily: 'Poppins',
                     color: Color(0xFF232323),
@@ -160,7 +160,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.partyName,
+                                          partyDetailsPartyListRecord.name,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -170,9 +170,9 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                         ),
                                         Text(
                                           formatNumber(
-                                            widget.partyNumber,
+                                            partyDetailsPartyListRecord.phone,
                                             formatType: FormatType.custom,
-                                            format: '+88',
+                                            format: '++8',
                                             locale: '',
                                           ),
                                           style: FlutterFlowTheme.of(context)
