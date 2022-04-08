@@ -18,8 +18,7 @@ class AddPartyWidget extends StatefulWidget {
 }
 
 class _AddPartyWidgetState extends State<AddPartyWidget> {
-  String uploadedFileUrl1 = '';
-  String uploadedFileUrl2 = '';
+  String uploadedFileUrl = '';
   TextEditingController textController1;
   TextEditingController textController2;
   final formKey = GlobalKey<FormState>();
@@ -99,95 +98,60 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          final selectedMedia =
-                              await selectMediaWithSourceBottomSheet(
-                            context: context,
-                            allowPhoto: true,
-                          );
-                          if (selectedMedia != null &&
-                              validateFileFormat(
-                                  selectedMedia.storagePath, context)) {
-                            showUploadMessage(
-                              context,
-                              'Uploading file...',
-                              showLoading: true,
-                            );
-                            final downloadUrl = await uploadData(
-                                selectedMedia.storagePath, selectedMedia.bytes);
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            if (downloadUrl != null) {
-                              setState(() => uploadedFileUrl1 = downloadUrl);
-                              showUploadMessage(
-                                context,
-                                'Success!',
+                      Stack(
+                        alignment: AlignmentDirectional(0, 0),
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                allowPhoto: true,
                               );
-                            } else {
-                              showUploadMessage(
-                                context,
-                                'Failed to upload media',
-                              );
-                              return;
-                            }
-                          }
-                        },
-                        child: Stack(
-                          alignment: AlignmentDirectional(0, 0),
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  allowPhoto: true,
+                              if (selectedMedia != null &&
+                                  validateFileFormat(
+                                      selectedMedia.storagePath, context)) {
+                                showUploadMessage(
+                                  context,
+                                  'Uploading file...',
+                                  showLoading: true,
                                 );
-                                if (selectedMedia != null &&
-                                    validateFileFormat(
-                                        selectedMedia.storagePath, context)) {
+                                final downloadUrl = await uploadData(
+                                    selectedMedia.storagePath,
+                                    selectedMedia.bytes);
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                if (downloadUrl != null) {
+                                  setState(() => uploadedFileUrl = downloadUrl);
                                   showUploadMessage(
                                     context,
-                                    'Uploading file...',
-                                    showLoading: true,
+                                    'Success!',
                                   );
-                                  final downloadUrl = await uploadData(
-                                      selectedMedia.storagePath,
-                                      selectedMedia.bytes);
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
-                                  if (downloadUrl != null) {
-                                    setState(
-                                        () => uploadedFileUrl2 = downloadUrl);
-                                    showUploadMessage(
-                                      context,
-                                      'Success!',
-                                    );
-                                  } else {
-                                    showUploadMessage(
-                                      context,
-                                      'Failed to upload media',
-                                    );
-                                    return;
-                                  }
+                                } else {
+                                  showUploadMessage(
+                                    context,
+                                    'Failed to upload media',
+                                  );
+                                  return;
                                 }
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  uploadedFileUrl1,
-                                  width: 70,
-                                  height: 70,
-                                  fit: BoxFit.cover,
-                                ),
+                              }
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.network(
+                                'https://picsum.photos/seed/248/600',
+                                width: 70,
+                                height: 70,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Icon(
-                              Icons.camera_alt_rounded,
-                              color: Colors.white,
-                              size: 24,
-                            ),
-                          ],
-                        ),
+                          ),
+                          Icon(
+                            Icons.camera_alt_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -221,9 +185,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                       if (val.isEmpty) {
                         return 'Please input valid 11 digital number';
                       }
-                      if (val.length < 11) {
-                        return 'Input 11 digital phone number number';
-                      }
+
                       return null;
                     },
                   ),
@@ -264,7 +226,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                           final partyListCreateData = createPartyListRecordData(
                             name: textController1.text,
                             phone: int.parse(textController2.text),
-                            image: uploadedFileUrl1,
+                            image: uploadedFileUrl,
                           );
                           await PartyListRecord.collection
                               .doc()

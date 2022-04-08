@@ -111,8 +111,8 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                               borderRadius: BorderRadius.circular(50),
                               child: Image.network(
                                 widget.partyImage,
-                                width: 80,
-                                height: 80,
+                                width: 70,
+                                height: 70,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -122,7 +122,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                               child: Icon(
                                 Icons.call,
                                 color: Colors.black,
-                                size: 26,
+                                size: 30,
                               ),
                             ),
                           ],
