@@ -39,207 +39,226 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-            child: Text(
-              'Add New Party Details',
-              textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).title1.override(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-            ),
-          ),
-          Form(
-            key: formKey,
-            autovalidateMode: AutovalidateMode.always,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                  child: InkWell(
-                    onTap: () async {
-                      final selectedMedia =
-                          await selectMediaWithSourceBottomSheet(
-                        context: context,
-                        allowPhoto: true,
-                      );
-                      if (selectedMedia != null &&
-                          validateFileFormat(
-                              selectedMedia.storagePath, context)) {
-                        showUploadMessage(
-                          context,
-                          'Uploading file...',
-                          showLoading: true,
-                        );
-                        final downloadUrl = await uploadData(
-                            selectedMedia.storagePath, selectedMedia.bytes);
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        if (downloadUrl != null) {
-                          setState(() => uploadedFileUrl = downloadUrl);
-                          showUploadMessage(
-                            context,
-                            'Success!',
-                          );
-                        } else {
-                          showUploadMessage(
-                            context,
-                            'Failed to upload media',
-                          );
-                          return;
-                        }
-                      }
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.network(
-                        'https://picsum.photos/seed/108/600',
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                    child: Text(
+                      'Add New Party Details',
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).title1.override(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500,
+                          ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
-                  child: TextFormField(
-                    controller: textController1,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Enter name',
-                      hintText: 'Enter full name',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFA4A4A4),
-                          width: 2,
+                  Form(
+                    key: formKey,
+                    autovalidateMode: AutovalidateMode.always,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                          child: InkWell(
+                            onTap: () async {
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                allowPhoto: true,
+                              );
+                              if (selectedMedia != null &&
+                                  validateFileFormat(
+                                      selectedMedia.storagePath, context)) {
+                                showUploadMessage(
+                                  context,
+                                  'Uploading file...',
+                                  showLoading: true,
+                                );
+                                final downloadUrl = await uploadData(
+                                    selectedMedia.storagePath,
+                                    selectedMedia.bytes);
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                if (downloadUrl != null) {
+                                  setState(() => uploadedFileUrl = downloadUrl);
+                                  showUploadMessage(
+                                    context,
+                                    'Success!',
+                                  );
+                                } else {
+                                  showUploadMessage(
+                                    context,
+                                    'Failed to upload media',
+                                  );
+                                  return;
+                                }
+                              }
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.network(
+                                'https://picsum.photos/seed/108/600',
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFA4A4A4),
-                          width: 2,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                          child: TextFormField(
+                            controller: textController1,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Enter name',
+                              hintText: 'Enter full name',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFA4A4A4),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFA4A4A4),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            keyboardType: TextInputType.number,
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
-                  child: TextFormField(
-                    controller: textController2,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Phone',
-                      hintText: 'Phone Number',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFA4A4A4),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFA4A4A4),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    keyboardType: TextInputType.number,
-                    validator: (val) {
-                      if (val.isEmpty) {
-                        return 'Please input valid 11 digital number';
-                      }
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                          child: TextFormField(
+                            controller: textController2,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Phone',
+                              hintText: 'Phone Number',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFA4A4A4),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFA4A4A4),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            keyboardType: TextInputType.number,
+                            validator: (val) {
+                              if (val.isEmpty) {
+                                return 'Please input valid 11 digital number';
+                              }
 
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      FFButtonWidget(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                        },
-                        text: 'Cancel',
-                        options: FFButtonOptions(
-                          width: 150,
-                          height: 50,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .subtitle2
-                              .override(
-                                fontFamily: 'Poppins',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.normal,
-                              ),
-                          elevation: 2,
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            width: 2,
+                              return null;
+                            },
                           ),
-                          borderRadius: 5,
                         ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          final partyListCreateData = createPartyListRecordData(
-                            name: textController1.text,
-                            phone: int.parse(textController2.text),
-                            partyImage: uploadedFileUrl,
-                          );
-                          await PartyListRecord.collection
-                              .doc()
-                              .set(partyListCreateData);
-                          Navigator.pop(context);
-                        },
-                        text: 'Create',
-                        options: FFButtonOptions(
-                          width: 150,
-                          height: 50,
-                          color: FlutterFlowTheme.of(context).primaryBtnText,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Poppins',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                fontWeight: FontWeight.normal,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                                text: 'Cancel',
+                                options: FFButtonOptions(
+                                  width: 150,
+                                  height: 50,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBtnText,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  elevation: 2,
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                    width: 2,
+                                  ),
+                                  borderRadius: 5,
+                                ),
                               ),
-                          elevation: 2,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 2,
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  final partyListCreateData =
+                                      createPartyListRecordData(
+                                    name: textController1.text,
+                                    phone: int.parse(textController2.text),
+                                    partyImage: uploadedFileUrl,
+                                  );
+                                  await PartyListRecord.collection
+                                      .doc()
+                                      .set(partyListCreateData);
+                                  Navigator.pop(context);
+                                },
+                                text: 'Create',
+                                options: FFButtonOptions(
+                                  width: 150,
+                                  height: 50,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  elevation: 2,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 2,
+                                  ),
+                                  borderRadius: 5,
+                                ),
+                              ),
+                            ],
                           ),
-                          borderRadius: 5,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
