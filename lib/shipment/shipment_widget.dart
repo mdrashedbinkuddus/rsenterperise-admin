@@ -23,7 +23,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
@@ -48,7 +48,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: SpinKitSquareCircle(
+                child: SpinKitDoubleBounce(
                   color: Colors.black,
                   size: 50,
                 ),
@@ -93,7 +93,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                   child: SizedBox(
                                     width: 50,
                                     height: 50,
-                                    child: SpinKitSquareCircle(
+                                    child: SpinKitDoubleBounce(
                                       color: Colors.black,
                                       size: 50,
                                     ),

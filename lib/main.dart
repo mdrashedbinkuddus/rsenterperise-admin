@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: SpinKitSquareCircle(
+                child: SpinKitDoubleBounce(
                   color: Colors.black,
                   size: 50,
                 ),

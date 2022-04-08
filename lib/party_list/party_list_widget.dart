@@ -1,15 +1,26 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/add_party_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../party_details/party_details_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartyListWidget extends StatefulWidget {
-  const PartyListWidget({Key key}) : super(key: key);
+  const PartyListWidget({
+    Key key,
+    this.partyName,
+    this.partyPhoneNumber,
+    this.partyImage,
+  }) : super(key: key);
+
+  final String partyName;
+  final int partyPhoneNumber;
+  final String partyImage;
 
   @override
   _PartyListWidgetState createState() => _PartyListWidgetState();
@@ -23,18 +34,45 @@ class _PartyListWidgetState extends State<PartyListWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          'Party List',
+          'Party',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF232323),
                 fontSize: 22,
               ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+            child: InkWell(
+              onTap: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        height: 410,
+                        child: AddPartyWidget(),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Icon(
+                Icons.person_add_rounded,
+                color: Colors.black,
+                size: 26,
+              ),
+            ),
+          ),
+        ],
         centerTitle: false,
         elevation: 2,
       ),
@@ -48,7 +86,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: SpinKitSquareCircle(
+                child: SpinKitDoubleBounce(
                   color: Colors.black,
                   size: 50,
                 ),
@@ -93,7 +131,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                   child: SizedBox(
                                     width: 50,
                                     height: 50,
-                                    child: SpinKitSquareCircle(
+                                    child: SpinKitDoubleBounce(
                                       color: Colors.black,
                                       size: 50,
                                     ),
@@ -290,6 +328,110 @@ class _PartyListWidgetState extends State<PartyListWidget> {
             ),
           );
         },
+      ),
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: StreamBuilder<List<PartyListRecord>>(
+            stream: queryPartyListRecord(
+              queryBuilder: (partyListRecord) =>
+                  partyListRecord.orderBy('name'),
+            ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: SpinKitDoubleBounce(
+                      color: Colors.black,
+                      size: 50,
+                    ),
+                  ),
+                );
+              }
+              List<PartyListRecord> columnPartyListRecordList = snapshot.data;
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: List.generate(columnPartyListRecordList.length,
+                      (columnIndex) {
+                    final columnPartyListRecord =
+                        columnPartyListRecordList[columnIndex];
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PartyDetailsWidget(
+                                partyName: columnPartyListRecord.name,
+                                partyImage: columnPartyListRecord.image,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Color(0xFFF5F5F5),
+                          elevation: 8,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.network(
+                                    columnPartyListRecord.image,
+                                    width: 70,
+                                    height: 70,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      columnPartyListRecord.name,
+                                      style: FlutterFlowTheme.of(context)
+                                          .title1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                    ),
+                                    Text(
+                                      formatNumber(
+                                        columnPartyListRecord.phone,
+                                        formatType: FormatType.custom,
+                                        format: '+88',
+                                        locale: '',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

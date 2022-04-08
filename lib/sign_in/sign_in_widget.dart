@@ -160,7 +160,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                               color: Color(0xFF606060),
                               fontSize: 17,
                             ),
-                            elevation: 2,
+                            elevation: 5,
                             borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1,
