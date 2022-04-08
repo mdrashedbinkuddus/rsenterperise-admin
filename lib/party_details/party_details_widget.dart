@@ -159,20 +159,25 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          partyDetailsPartyListRecord.name,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 18,
-                                              ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 5),
+                                          child: Text(
+                                            partyDetailsPartyListRecord.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 18,
+                                                ),
+                                          ),
                                         ),
                                         Text(
                                           formatNumber(
                                             partyDetailsPartyListRecord.phone,
                                             formatType: FormatType.custom,
-                                            format: '++8',
+                                            format: '+88',
                                             locale: '',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -185,10 +190,20 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 10, 0),
-                                  child: Icon(
-                                    Icons.call,
-                                    color: Colors.black,
-                                    size: 26,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      await launchURL(formatNumber(
+                                        partyDetailsPartyListRecord.phone,
+                                        formatType: FormatType.custom,
+                                        format: 'tel:',
+                                        locale: '',
+                                      ));
+                                    },
+                                    child: Icon(
+                                      Icons.call,
+                                      color: Colors.black,
+                                      size: 26,
+                                    ),
                                   ),
                                 ),
                               ],
