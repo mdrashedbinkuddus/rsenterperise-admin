@@ -310,7 +310,9 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               type: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
                               reverseDuration: Duration(milliseconds: 0),
-                              child: PartyDetailsWidget(),
+                              child: PartyDetailsWidget(
+                                partyDetails: columnPartyListRecord.reference,
+                              ),
                             ),
                           );
                         },
