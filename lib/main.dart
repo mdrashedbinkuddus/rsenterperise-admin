@@ -8,7 +8,7 @@ import 'auth/auth_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:r_s_enterprise_admin/sign_in/sign_in_widget.dart';
+import 'package:rafia_enterprise/sign_in/sign_in_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
@@ -35,8 +35,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  Stream<RSEnterpriseAdminFirebaseUser> userStream;
-  RSEnterpriseAdminFirebaseUser initialUser;
+  Stream<RafiaEnterpriseFirebaseUser> userStream;
+  RafiaEnterpriseFirebaseUser initialUser;
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    userStream = rSEnterpriseAdminFirebaseUserStream()
+    userStream = rafiaEnterpriseFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RSEnterprise - Admin',
+      title: 'Rafia Enterprise',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: Colors.transparent,
+              color: FlutterFlowTheme.of(context).primaryColor,
               child: Center(
                 child: Builder(
                   builder: (context) => Image.asset(

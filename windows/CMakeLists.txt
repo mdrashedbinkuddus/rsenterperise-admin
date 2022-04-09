@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(r_s_enterprise_admin LANGUAGES CXX)
+project(rafia_enterprise LANGUAGES CXX)
 
-set(BINARY_NAME "r_s_enterprise_admin")
+set(BINARY_NAME "rafia_enterprise")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "RSEnterprise - Admin" "\0"
+            VALUE "CompanyName", "Rafia Enterprise" "\0"
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "RSEnterprise - Admin" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 RSEnterprise - Admin. All rights reserved." "\0"
-            VALUE "OriginalFilename", "r_s_enterprise_admin.exe" "\0"
-            VALUE "ProductName", "RSEnterprise - Admin" "\0"
+            VALUE "InternalName", "Rafia Enterprise" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 Rafia Enterprise. All rights reserved." "\0"
+            VALUE "OriginalFilename", "rafia_enterprise.exe" "\0"
+            VALUE "ProductName", "Rafia Enterprise" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
