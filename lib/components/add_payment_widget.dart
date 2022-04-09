@@ -239,7 +239,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                           controller: textController2,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Amount Paid',
+                            labelText: 'Cheque Number',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0xFFCDCDCD),
@@ -263,7 +263,6 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal,
                                   ),
-                          keyboardType: TextInputType.number,
                         ),
                       ),
                   ],
