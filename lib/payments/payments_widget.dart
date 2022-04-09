@@ -440,23 +440,56 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                           context)
                                                       .subtitle2,
                                                 ),
-                                                Text(
-                                                  formatNumber(
-                                                    columnCostsRecord.invoiceNo,
-                                                    formatType:
-                                                        FormatType.custom,
-                                                    format: 'Invoice no: ',
-                                                    locale: '',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      formatNumber(
+                                                        columnCostsRecord
+                                                            .invoiceNo,
+                                                        formatType:
+                                                            FormatType.custom,
+                                                        format: 'Invoice no: ',
+                                                        locale: '',
                                                       ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 5, 10, 5),
+                                                      child: Text(
+                                                        'Cheque',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),

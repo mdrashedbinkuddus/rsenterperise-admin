@@ -18,21 +18,24 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   DateTime datePicked1;
   String dropDownValue;
   DateTime datePicked2;
-  TextEditingController textController;
+  TextEditingController textController1;
   String paymentMethodValue;
+  DateTime datePicked3;
+  TextEditingController textController2;
   final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 400,
+      height: 4475,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryColor,
         borderRadius: BorderRadius.only(
@@ -148,7 +151,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                           minTime: getCurrentTimestamp,
                         );
                       },
-                      controller: textController,
+                      controller: textController1,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'Amount Paid',
@@ -179,7 +182,9 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                       child: FlutterFlowChoiceChips(
-                        initiallySelected: [paymentMethodValue],
+                        initiallySelected: paymentMethodValue != null
+                            ? [paymentMethodValue]
+                            : ['Cheque'],
                         options: [ChipData('Cash'), ChipData('Cheque')],
                         onChanged: (val) =>
                             setState(() => paymentMethodValue = val.first),
@@ -212,9 +217,55 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                         ),
                         chipSpacing: 20,
                         multiselect: false,
+                        initialized: paymentMethodValue != null,
                         alignment: WrapAlignment.center,
                       ),
                     ),
+                    if ((paymentMethodValue) == 'Cheque')
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        child: TextFormField(
+                          onFieldSubmitted: (_) async {
+                            await DatePicker.showDatePicker(
+                              context,
+                              showTitleActions: true,
+                              onConfirm: (date) {
+                                setState(() => datePicked3 = date);
+                              },
+                              currentTime: getCurrentTimestamp,
+                              minTime: getCurrentTimestamp,
+                            );
+                          },
+                          controller: textController2,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Amount Paid',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFCDCDCD),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFCDCDCD),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
                   ],
                 ),
               ),
