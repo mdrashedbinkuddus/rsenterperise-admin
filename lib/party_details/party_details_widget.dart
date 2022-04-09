@@ -24,10 +24,8 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<PartyListRecord>>(
-      stream: queryPartyListRecord(
-        singleRecord: true,
-      ),
+    return StreamBuilder<PartyListRecord>(
+      stream: PartyListRecord.getDocument(widget.partyDetails),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -42,15 +40,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
             ),
           );
         }
-        List<PartyListRecord> partyDetailsPartyListRecordList = snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
-        final partyDetailsPartyListRecord =
-            partyDetailsPartyListRecordList.isNotEmpty
-                ? partyDetailsPartyListRecordList.first
-                : null;
+        final partyDetailsPartyListRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
