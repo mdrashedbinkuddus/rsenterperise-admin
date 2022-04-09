@@ -274,7 +274,10 @@ class _PartyListWidgetState extends State<PartyListWidget> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: StreamBuilder<List<PartyListRecord>>(
-            stream: queryPartyListRecord(),
+            stream: queryPartyListRecord(
+              queryBuilder: (partyListRecord) =>
+                  partyListRecord.orderBy('name'),
+            ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
@@ -307,10 +310,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               type: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
                               reverseDuration: Duration(milliseconds: 0),
-                              child: PartyDetailsWidget(
-                                partyName: columnPartyListRecord.name,
-                                partyNumber: columnPartyListRecord.phone,
-                              ),
+                              child: PartyDetailsWidget(),
                             ),
                           );
                         },

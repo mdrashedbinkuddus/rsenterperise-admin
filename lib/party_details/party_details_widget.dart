@@ -7,14 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartyDetailsWidget extends StatefulWidget {
-  const PartyDetailsWidget({
-    Key key,
-    this.partyName,
-    this.partyNumber,
-  }) : super(key: key);
-
-  final String partyName;
-  final int partyNumber;
+  const PartyDetailsWidget({Key key}) : super(key: key);
 
   @override
   _PartyDetailsWidgetState createState() => _PartyDetailsWidgetState();
@@ -92,8 +85,8 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                         duration: Duration(milliseconds: 300),
                         reverseDuration: Duration(milliseconds: 300),
                         child: EditPartyWidget(
-                          partyName: widget.partyName,
-                          partyNumber: widget.partyNumber,
+                          partyName: partyDetailsPartyListRecord.name,
+                          partyNumber: partyDetailsPartyListRecord.phone,
                         ),
                       ),
                     );
