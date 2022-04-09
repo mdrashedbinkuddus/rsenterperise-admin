@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -21,13 +22,15 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   String dropDownValue;
   DateTime datePicked2;
   TextEditingController textController2;
+  String paymentMethodValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
+    textController1 =
+        TextEditingController(text: dateTimeFormat('yMMMd', datePicked2));
     textController2 = TextEditingController();
   }
 
@@ -71,8 +74,8 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                 color: FlutterFlowTheme.of(context).primaryBtnText,
                 size: 30,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                Navigator.pop(context);
               },
             ),
             title: Text(
@@ -230,6 +233,48 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                             keyboardType: TextInputType.number,
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                            child: FlutterFlowChoiceChips(
+                              initiallySelected: [paymentMethodValue],
+                              options: [ChipData('Cash'), ChipData('Cheque')],
+                              onChanged: (val) => setState(
+                                  () => paymentMethodValue = val.first),
+                              selectedChipStyle: ChipStyle(
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
+                                iconColor: Colors.white,
+                                iconSize: 18,
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 15, 5),
+                                elevation: 0,
+                              ),
+                              unselectedChipStyle: ChipStyle(
+                                backgroundColor: Colors.white,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF323B45),
+                                    ),
+                                iconColor: Color(0xFF323B45),
+                                iconSize: 18,
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                    15, 5, 15, 5),
+                                elevation: 4,
+                              ),
+                              chipSpacing: 25,
+                              multiselect: false,
+                              alignment: WrapAlignment.spaceEvenly,
+                            ),
                           ),
                         ],
                       ),
