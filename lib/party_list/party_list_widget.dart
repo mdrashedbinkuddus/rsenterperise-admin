@@ -49,7 +49,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 280,
+                        height: 300,
                         child: AddPartyWidget(),
                       ),
                     );

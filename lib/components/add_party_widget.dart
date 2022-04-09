@@ -26,160 +26,172 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(5),
-                  topRight: Radius.circular(5),
-                ),
-              ),
-              alignment: AlignmentDirectional(0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Add New Party',
-                        style: FlutterFlowTheme.of(context).title2,
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: Colors.black,
-                        size: 30,
-                      ),
-                    ],
+    return Container(
+      height: 300,
+      decoration: BoxDecoration(
+        color: Color(0xFFEEEEEE),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(0),
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(0),
+                    bottomRight: Radius.circular(0),
+                    topLeft: Radius.circular(5),
+                    topRight: Radius.circular(5),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: Form(
-                      key: formKey,
-                      autovalidateMode: AutovalidateMode.always,
-                      child: StreamBuilder<List<PartyListRecord>>(
-                        stream: queryPartyListRecord(
-                          singleRecord: true,
+                ),
+                alignment: AlignmentDirectional(0, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Add New Party',
+                          style: FlutterFlowTheme.of(context).title2,
                         ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: SpinKitDoubleBounce(
-                                  color: Colors.black,
-                                  size: 50,
-                                ),
-                              ),
-                            );
-                          }
-                          List<PartyListRecord> columnPartyListRecordList =
-                              snapshot.data;
-                          final columnPartyListRecord =
-                              columnPartyListRecordList.isNotEmpty
-                                  ? columnPartyListRecordList.first
-                                  : null;
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 20, 0, 10),
-                                child: TextFormField(
-                                  controller: textController1,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Enter full name',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFA4A4A4),
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFA4A4A4),
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
+                        Icon(
+                          Icons.check_rounded,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      child: Form(
+                        key: formKey,
+                        autovalidateMode: AutovalidateMode.always,
+                        child: StreamBuilder<List<PartyListRecord>>(
+                          stream: queryPartyListRecord(
+                            singleRecord: true,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitDoubleBounce(
+                                    color: Colors.black,
+                                    size: 50,
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                  keyboardType: TextInputType.number,
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 10, 0, 10),
-                                child: TextFormField(
-                                  controller: textController2,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Phone Number',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFA4A4A4),
-                                        width: 2,
+                              );
+                            }
+                            List<PartyListRecord> columnPartyListRecordList =
+                                snapshot.data;
+                            final columnPartyListRecord =
+                                columnPartyListRecordList.isNotEmpty
+                                    ? columnPartyListRecordList.first
+                                    : null;
+                            return Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 20, 0, 10),
+                                  child: TextFormField(
+                                    controller: textController1,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Enter full name',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFA4A4A4),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFA4A4A4),
-                                        width: 2,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFA4A4A4),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
-                                      borderRadius: BorderRadius.circular(5),
                                     ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    keyboardType: TextInputType.number,
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 10, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController2,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Phone Number',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFA4A4A4),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
-                                  keyboardType: TextInputType.number,
-                                  validator: (val) {
-                                    if (val.isEmpty) {
-                                      return 'Please input valid 11 digital number';
-                                    }
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFA4A4A4),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    keyboardType: TextInputType.number,
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return 'Please input valid 11 digital number';
+                                      }
 
-                                    return null;
-                                  },
+                                      return null;
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
