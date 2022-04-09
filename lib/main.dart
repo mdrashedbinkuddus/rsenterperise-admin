@@ -13,9 +13,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'party_list/party_list_widget.dart';
-import 'shipment/shipment_widget.dart';
-import 'costs/costs_widget.dart';
 import 'payments/payments_widget.dart';
+import 'costs/costs_widget.dart';
+import 'shipment/shipment_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -120,9 +120,9 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'PartyList': PartyListWidget(),
-      'Shipment': ShipmentWidget(),
-      'Costs': CostsWidget(),
       'Payments': PaymentsWidget(),
+      'Costs': CostsWidget(),
+      'Shipment': ShipmentWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -155,10 +155,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.flight_takeoff_rounded,
+              Icons.attach_money_rounded,
               size: 26,
             ),
-            label: 'Shipment',
+            label: 'Payment',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -171,10 +171,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.attach_money_rounded,
+              Icons.flight_takeoff_rounded,
               size: 26,
             ),
-            label: 'Payment',
+            label: 'Shipment',
             tooltip: '',
           )
         ],

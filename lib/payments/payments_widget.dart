@@ -74,6 +74,31 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: Container(
+                  height: 475,
+                  child: AddPaymentWidget(),
+                ),
+              );
+            },
+          );
+        },
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        elevation: 8,
+        child: Icon(
+          Icons.add_rounded,
+          color: FlutterFlowTheme.of(context).primaryColor,
+          size: 26,
+        ),
+      ),
       drawer: StreamBuilder<UserRecord>(
         stream: UserRecord.getDocument(currentUserReference),
         builder: (context, snapshot) {
