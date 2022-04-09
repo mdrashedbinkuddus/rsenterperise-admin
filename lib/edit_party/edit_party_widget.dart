@@ -179,6 +179,7 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
+                        keyboardType: TextInputType.phone,
                       ),
                     ),
                   ],
