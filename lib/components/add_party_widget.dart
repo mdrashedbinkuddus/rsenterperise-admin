@@ -27,9 +27,10 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       height: 300,
       decoration: BoxDecoration(
-        color: Color(0xFFEEEEEE),
+        color: FlutterFlowTheme.of(context).primaryColor,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0),
           bottomRight: Radius.circular(0),
