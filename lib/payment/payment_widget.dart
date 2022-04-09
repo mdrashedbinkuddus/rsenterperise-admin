@@ -414,6 +414,8 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                       child: Card(
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
                                         elevation: 0,
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,

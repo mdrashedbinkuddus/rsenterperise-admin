@@ -417,6 +417,8 @@ class _CostsWidgetState extends State<CostsWidget> {
                                       child: Card(
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
                                         elevation: 0,
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
