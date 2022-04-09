@@ -148,7 +148,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Payment'),
+                                child: NavBarPage(initialPage: 'Payments'),
                               ),
                             );
                           },

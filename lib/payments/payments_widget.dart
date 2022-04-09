@@ -1,6 +1,6 @@
-import '../add_payment/add_payment_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/add_payment_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -10,8 +10,8 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PaymentWidget extends StatefulWidget {
-  const PaymentWidget({
+class PaymentsWidget extends StatefulWidget {
+  const PaymentsWidget({
     Key key,
     this.date,
   }) : super(key: key);
@@ -19,10 +19,10 @@ class PaymentWidget extends StatefulWidget {
   final DateTime date;
 
   @override
-  _PaymentWidgetState createState() => _PaymentWidgetState();
+  _PaymentsWidgetState createState() => _PaymentsWidgetState();
 }
 
-class _PaymentWidgetState extends State<PaymentWidget> {
+class _PaymentsWidgetState extends State<PaymentsWidget> {
   DateTime datePicked;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -47,14 +47,19 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
             child: InkWell(
               onTap: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                    reverseDuration: Duration(milliseconds: 0),
-                    child: AddPaymentWidget(),
-                  ),
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        height: 400,
+                        child: AddPaymentWidget(),
+                      ),
+                    );
+                  },
                 );
               },
               child: Icon(
@@ -178,7 +183,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Payment'),
+                                child: NavBarPage(initialPage: 'Payments'),
                               ),
                             );
                           },

@@ -55,7 +55,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 500,
+                        height: 400,
                         child: AddCostWidget(),
                       ),
                     );
@@ -183,7 +183,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Payment'),
+                                child: NavBarPage(initialPage: 'Payments'),
                               ),
                             );
                           },

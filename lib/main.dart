@@ -15,7 +15,7 @@ import 'home_page/home_page_widget.dart';
 import 'party_list/party_list_widget.dart';
 import 'shipment/shipment_widget.dart';
 import 'costs/costs_widget.dart';
-import 'payment/payment_widget.dart';
+import 'payments/payments_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -122,7 +122,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'PartyList': PartyListWidget(),
       'Shipment': ShipmentWidget(),
       'Costs': CostsWidget(),
-      'Payment': PaymentWidget(),
+      'Payments': PaymentsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(

@@ -49,7 +49,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 460,
+                        height: 280,
                         child: AddPartyWidget(),
                       ),
                     );
@@ -177,7 +177,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Payment'),
+                                child: NavBarPage(initialPage: 'Payments'),
                               ),
                             );
                           },
