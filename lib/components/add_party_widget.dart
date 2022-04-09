@@ -1,6 +1,8 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,10 +70,23 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                           'Add New Party',
                           style: FlutterFlowTheme.of(context).title2,
                         ),
-                        Icon(
-                          Icons.check_rounded,
-                          color: Colors.black,
-                          size: 30,
+                        InkWell(
+                          onTap: () async {
+                            final partyListCreateData =
+                                createPartyListRecordData(
+                              name: textController1.text,
+                              phone: int.parse(textController2.text),
+                            );
+                            await PartyListRecord.collection
+                                .doc()
+                                .set(partyListCreateData);
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.check_rounded,
+                            color: Colors.black,
+                            size: 30,
+                          ),
                         ),
                       ],
                     ),
