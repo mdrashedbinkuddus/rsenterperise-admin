@@ -1,6 +1,6 @@
+import '../add_payment/add_payment_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/add_cost_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../sign_in/sign_in_widget.dart';
@@ -46,19 +46,14 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
             child: InkWell(
               onTap: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  context: context,
-                  builder: (context) {
-                    return Padding(
-                      padding: MediaQuery.of(context).viewInsets,
-                      child: Container(
-                        height: 500,
-                        child: AddCostWidget(),
-                      ),
-                    );
-                  },
+                await Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                    reverseDuration: Duration(milliseconds: 0),
+                    child: AddPaymentWidget(),
+                  ),
                 );
               },
               child: Icon(
