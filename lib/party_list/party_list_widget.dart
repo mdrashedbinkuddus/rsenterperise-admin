@@ -133,7 +133,10 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               return ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: Image.network(
-                                  drawerUserRecord.photoUrl,
+                                  valueOrDefault<String>(
+                                    drawerUserRecord.photoUrl,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/r-s-enterprise-admin-ghscow/assets/ffgkx5xuwf47/logo.png',
+                                  ),
                                   width: 60,
                                   height: 60,
                                   fit: BoxFit.cover,
@@ -295,7 +298,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                     final columnPartyListRecord =
                         columnPartyListRecordList[columnIndex];
                     return Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 0),
                       child: InkWell(
                         onTap: () async {
                           await Navigator.push(

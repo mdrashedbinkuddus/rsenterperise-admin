@@ -74,8 +74,8 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
                 color: FlutterFlowTheme.of(context).primaryBtnText,
                 size: 30,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                Navigator.pop(context);
               },
             ),
             title: Text(

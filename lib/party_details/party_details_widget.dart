@@ -11,12 +11,10 @@ class PartyDetailsWidget extends StatefulWidget {
     Key key,
     this.partyName,
     this.partyNumber,
-    this.partyImage,
   }) : super(key: key);
 
   final String partyName;
   final int partyNumber;
-  final String partyImage;
 
   @override
   _PartyDetailsWidgetState createState() => _PartyDetailsWidgetState();

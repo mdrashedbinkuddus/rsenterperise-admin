@@ -133,7 +133,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                               return ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: Image.network(
-                                  drawerUserRecord.photoUrl,
+                                  valueOrDefault<String>(
+                                    drawerUserRecord.photoUrl,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/r-s-enterprise-admin-ghscow/assets/ffgkx5xuwf47/logo.png',
+                                  ),
                                   width: 60,
                                   height: 60,
                                   fit: BoxFit.cover,
