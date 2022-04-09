@@ -413,7 +413,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                       child: Card(
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
-                                        color: Color(0xFFF5F5F5),
                                         elevation: 0,
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,

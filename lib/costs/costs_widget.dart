@@ -417,7 +417,6 @@ class _CostsWidgetState extends State<CostsWidget> {
                                       child: Card(
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
-                                        color: Color(0xFFF5F5F5),
                                         elevation: 0,
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,

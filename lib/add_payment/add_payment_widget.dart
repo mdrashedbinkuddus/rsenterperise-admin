@@ -18,10 +18,9 @@ class AddPaymentWidget extends StatefulWidget {
 
 class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   DateTime datePicked1;
-  TextEditingController textController1;
   String dropDownValue;
   DateTime datePicked2;
-  TextEditingController textController2;
+  TextEditingController textController;
   String paymentMethodValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,9 +28,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   @override
   void initState() {
     super.initState();
-    textController1 =
-        TextEditingController(text: dateTimeFormat('yMMMd', datePicked2));
-    textController2 = TextEditingController();
+    textController = TextEditingController();
   }
 
   @override
@@ -117,9 +114,9 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: TextFormField(
-                              onFieldSubmitted: (_) async {
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                            child: InkWell(
+                              onTap: () async {
                                 await DatePicker.showDatePicker(
                                   context,
                                   showTitleActions: true,
@@ -130,40 +127,32 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                                   minTime: getCurrentTimestamp,
                                 );
                               },
-                              controller: textController1,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Date',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFFCDCDCD),
-                                    width: 2,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    dateTimeFormat('yMMMd', datePicked1),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                   ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFFCDCDCD),
-                                    width: 2,
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 10, 0),
+                                    child: Icon(
+                                      Icons.calendar_today_rounded,
+                                      color: Colors.black,
+                                      size: 26,
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    15, 20, 15, 20),
-                                suffixIcon: Icon(
-                                  Icons.calendar_today_rounded,
-                                  color: Color(0xFF757575),
-                                  size: 26,
-                                ),
+                                ],
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              keyboardType: TextInputType.datetime,
                             ),
                           ),
                           Padding(
@@ -205,7 +194,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                                 minTime: getCurrentTimestamp,
                               );
                             },
-                            controller: textController2,
+                            controller: textController,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Amount Paid',
