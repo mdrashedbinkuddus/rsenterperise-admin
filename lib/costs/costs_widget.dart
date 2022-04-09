@@ -3,7 +3,7 @@ import '../backend/backend.dart';
 import '../components/add_cost_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../payment/payment_widget.dart';
+import '../main.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -183,7 +183,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: PaymentWidget(),
+                                child: NavBarPage(initialPage: 'Payment'),
                               ),
                             );
                           },
@@ -512,7 +512,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                                       .override(
                                         fontFamily: 'Poppins',
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ],
