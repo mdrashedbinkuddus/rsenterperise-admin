@@ -1,6 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/add_payment_widget.dart';
+import '../components/add_business_loan_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -55,7 +55,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
                         height: 475,
-                        child: AddPaymentWidget(),
+                        child: AddBusinessLoanWidget(),
                       ),
                     );
                   },
@@ -84,7 +84,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                 padding: MediaQuery.of(context).viewInsets,
                 child: Container(
                   height: 475,
-                  child: AddPaymentWidget(),
+                  child: AddBusinessLoanWidget(),
                 ),
               );
             },
