@@ -421,11 +421,8 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                               ],
                             ),
                           ),
-                          StreamBuilder<List<CostsRecord>>(
-                            stream: queryCostsRecord(
-                              queryBuilder: (costsRecord) =>
-                                  costsRecord.orderBy('date', descending: true),
-                            ),
+                          StreamBuilder<List<BusinessLoanRecord>>(
+                            stream: queryBusinessLoanRecord(),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -440,8 +437,8 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                   ),
                                 );
                               }
-                              List<CostsRecord> columnCostsRecordList =
-                                  snapshot.data;
+                              List<BusinessLoanRecord>
+                                  columnBusinessLoanRecordList = snapshot.data;
                               return SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -449,14 +446,14 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: List.generate(
-                                      columnCostsRecordList.length,
+                                      columnBusinessLoanRecordList.length,
                                       (columnIndex) {
-                                    final columnCostsRecord =
-                                        columnCostsRecordList[columnIndex];
+                                    final columnBusinessLoanRecord =
+                                        columnBusinessLoanRecordList[
+                                            columnIndex];
                                     return Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                      color: Colors.white,
                                       elevation: 0,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
