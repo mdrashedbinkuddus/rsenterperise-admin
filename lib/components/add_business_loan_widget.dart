@@ -247,7 +247,6 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
-                        keyboardType: TextInputType.datetime,
                       ),
                     ),
                   ],

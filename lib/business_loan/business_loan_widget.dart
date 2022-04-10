@@ -461,7 +461,8 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                           Expanded(
                                             flex: 3,
                                             child: Text(
-                                              'Name',
+                                              columnBusinessLoanRecord
+                                                  .personName,
                                               textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -481,7 +482,10 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                           Expanded(
                                             flex: 1,
                                             child: Text(
-                                              'Date',
+                                              dateTimeFormat(
+                                                  'd/M/y',
+                                                  columnBusinessLoanRecord
+                                                      .dateOfTaken),
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -498,7 +502,13 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                           Expanded(
                                             flex: 2,
                                             child: Text(
-                                              'Amount',
+                                              formatNumber(
+                                                columnBusinessLoanRecord.amount,
+                                                formatType: FormatType.custom,
+                                                currency: '৳',
+                                                format: '',
+                                                locale: '',
+                                              ),
                                               textAlign: TextAlign.end,
                                               style:
                                                   FlutterFlowTheme.of(context)
