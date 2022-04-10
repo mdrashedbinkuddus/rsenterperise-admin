@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../business_loan/business_loan_widget.dart';
 import '../components/add_payment_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PaymentsWidget extends StatefulWidget {
@@ -214,12 +216,45 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                           },
                           child: ListTile(
                             leading: Icon(
-                              Icons.attach_money_rounded,
+                              FFIcons.ktaka,
                               color: FlutterFlowTheme.of(context).lineColor,
                               size: 24,
                             ),
                             title: Text(
                               'Payments',
+                              style:
+                                  FlutterFlowTheme.of(context).title3.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                            ),
+                            dense: false,
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(20, 5, 0, 5),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                                reverseDuration: Duration(milliseconds: 0),
+                                child: BusinessLoanWidget(),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: FaIcon(
+                              FontAwesomeIcons.piggyBank,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              size: 24,
+                            ),
+                            title: Text(
+                              'Business Loan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
