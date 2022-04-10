@@ -17,18 +17,22 @@ class AddBusinessLoanWidget extends StatefulWidget {
 
 class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
   DateTime datePicked1;
-  TextEditingController textController1;
+  TextEditingController returndateController1;
+  TextEditingController textController2;
   TextEditingController amountController;
   DateTime datePicked2;
-  TextEditingController returndateController;
+  TextEditingController returndateController2;
   final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     amountController = TextEditingController();
-    textController1 = TextEditingController();
-    returndateController = TextEditingController();
+    returndateController1 =
+        TextEditingController(text: dateTimeFormat('yMMMd', datePicked1));
+    textController2 = TextEditingController();
+    returndateController2 =
+        TextEditingController(text: dateTimeFormat('yMMMd', datePicked2));
   }
 
   @override
@@ -62,7 +66,7 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                 InkWell(
                   onTap: () async {
                     final businessLoanCreateData = createBusinessLoanRecordData(
-                      personName: textController1.text,
+                      personName: textController2.text,
                       dateOfTaken: datePicked1,
                       amount: double.parse(amountController.text),
                       paymentDate: datePicked2,
@@ -90,49 +94,77 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                   children: [
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                      child: InkWell(
-                        onTap: () async {
-                          await DatePicker.showDatePicker(
-                            context,
-                            showTitleActions: true,
-                            onConfirm: (date) {
-                              setState(() => datePicked1 = date);
-                            },
-                            currentTime: getCurrentTimestamp,
-                            minTime: getCurrentTimestamp,
-                          );
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              dateTimeFormat('yMMMd', datePicked1),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                            Padding(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 20, 0),
+                              child: TextFormField(
+                                controller: returndateController1,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Taken Date',
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFCDCDCD),
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFCDCDCD),
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  contentPadding:
+                                      EdgeInsetsDirectional.fromSTEB(
+                                          15, 20, 15, 20),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                keyboardType: TextInputType.datetime,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                await DatePicker.showDatePicker(
+                                  context,
+                                  showTitleActions: true,
+                                  onConfirm: (date) {
+                                    setState(() => datePicked1 = date);
+                                  },
+                                  currentTime: getCurrentTimestamp,
+                                  minTime: DateTime(0, 0, 0),
+                                );
+                              },
                               child: Icon(
                                 Icons.calendar_today_rounded,
                                 color: Colors.black,
                                 size: 26,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: TextFormField(
-                        controller: textController1,
+                        controller: textController2,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Person Name',
@@ -207,47 +239,69 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                         },
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                      child: TextFormField(
-                        onFieldSubmitted: (_) async {
-                          await DatePicker.showDatePicker(
-                            context,
-                            showTitleActions: true,
-                            onConfirm: (date) {
-                              setState(() => datePicked2 = date);
-                            },
-                            currentTime: getCurrentTimestamp,
-                            minTime: getCurrentTimestamp,
-                          );
-                        },
-                        controller: returndateController,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Return Date',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFFCDCDCD),
-                              width: 2,
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 20, 0),
+                            child: TextFormField(
+                              controller: returndateController2,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Return Date',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFCDCDCD),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFCDCDCD),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                    15, 20, 15, 20),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              keyboardType: TextInputType.datetime,
                             ),
-                            borderRadius: BorderRadius.circular(5),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFFCDCDCD),
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await DatePicker.showDatePicker(
+                                context,
+                                showTitleActions: true,
+                                onConfirm: (date) {
+                                  setState(() => datePicked2 = date);
+                                },
+                                currentTime: getCurrentTimestamp,
+                                minTime: getCurrentTimestamp,
+                              );
+                            },
+                            child: Icon(
+                              Icons.calendar_today_rounded,
+                              color: Colors.black,
+                              size: 26,
                             ),
-                      ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
