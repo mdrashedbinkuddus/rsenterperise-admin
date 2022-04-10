@@ -5,6 +5,7 @@ import 'party_list_record.dart';
 import 'shipment_record.dart';
 import 'costs_record.dart';
 import 'party_payments_record.dart';
+import 'business_loan_record.dart';
 
 import 'index.dart';
 
@@ -20,6 +21,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   ShipmentRecord,
   CostsRecord,
   PartyPaymentsRecord,
+  BusinessLoanRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

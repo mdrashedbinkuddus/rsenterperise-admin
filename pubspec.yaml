@@ -96,6 +96,10 @@ flutter:
     - assets/rive_animations/
     - assets/pdfs/
 
+  fonts:
+    - family: Tk
+      fonts:
+        - asset: assets/fonts/tk.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

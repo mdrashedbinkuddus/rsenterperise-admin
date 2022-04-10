@@ -163,8 +163,8 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.attach_money_rounded,
-              size: 26,
+              FFIcons.ktaka,
+              size: 20,
             ),
             label: 'Costs',
             tooltip: '',
