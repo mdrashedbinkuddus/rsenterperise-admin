@@ -453,7 +453,6 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                             columnIndex];
                                     return Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      color: Colors.white,
                                       elevation: 0,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -496,6 +495,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryBtnText,
+                                                        fontSize: 12,
                                                       ),
                                             ),
                                           ),
