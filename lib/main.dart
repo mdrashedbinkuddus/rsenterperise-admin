@@ -8,13 +8,14 @@ import 'auth/auth_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:r_s_enterprise_admin/sign_in/sign_in_widget.dart';
+import 'package:rafia_enterprise/sign_in/sign_in_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'party_list/party_list_widget.dart';
-import 'shipment/shipment_widget.dart';
+import 'payments/payments_widget.dart';
 import 'costs/costs_widget.dart';
+import 'shipment/shipment_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,8 +36,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  Stream<RSEnterpriseAdminFirebaseUser> userStream;
-  RSEnterpriseAdminFirebaseUser initialUser;
+  Stream<RafiaEnterpriseFirebaseUser> userStream;
+  RafiaEnterpriseFirebaseUser initialUser;
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    userStream = rSEnterpriseAdminFirebaseUserStream()
+    userStream = rafiaEnterpriseFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
@@ -64,7 +65,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RSEnterprise - Admin',
+      title: 'Rafia Enterprise',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -76,13 +77,15 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
-          ? Center(
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: SpinKitDoubleBounce(
-                  color: Colors.black,
-                  size: 50,
+          ? Container(
+              color: FlutterFlowTheme.of(context).primaryColor,
+              child: Center(
+                child: Builder(
+                  builder: (context) => Image.asset(
+                    'assets/images/rafia-enterprise.png',
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
             )
@@ -117,8 +120,9 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'PartyList': PartyListWidget(),
-      'Shipment': ShipmentWidget(),
+      'Payments': PaymentsWidget(),
       'Costs': CostsWidget(),
+      'Shipment': ShipmentWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -151,18 +155,26 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.flight_takeoff_rounded,
+              Icons.attach_money_rounded,
               size: 26,
             ),
-            label: 'Shipment',
+            label: 'Payment',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.attach_money_rounded,
-              size: 26,
+              FFIcons.ktaka,
+              size: 20,
             ),
             label: 'Costs',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.flight_takeoff_rounded,
+              size: 26,
+            ),
+            label: 'Shipment',
             tooltip: '',
           )
         ],

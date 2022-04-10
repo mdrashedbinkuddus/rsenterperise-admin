@@ -8,6 +8,8 @@ import 'schema/user_record.dart';
 import 'schema/party_list_record.dart';
 import 'schema/shipment_record.dart';
 import 'schema/costs_record.dart';
+import 'schema/party_payments_record.dart';
+import 'schema/business_loan_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,6 +20,8 @@ export 'schema/user_record.dart';
 export 'schema/party_list_record.dart';
 export 'schema/shipment_record.dart';
 export 'schema/costs_record.dart';
+export 'schema/party_payments_record.dart';
+export 'schema/business_loan_record.dart';
 
 /// Functions to query UserRecords (as a Stream and as a Future).
 Stream<List<UserRecord>> queryUserRecord(
@@ -77,6 +81,40 @@ Future<List<CostsRecord>> queryCostsRecordOnce(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(CostsRecord.collection, CostsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query PartyPaymentsRecords (as a Stream and as a Future).
+Stream<List<PartyPaymentsRecord>> queryPartyPaymentsRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        PartyPaymentsRecord.collection, PartyPaymentsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<PartyPaymentsRecord>> queryPartyPaymentsRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        PartyPaymentsRecord.collection, PartyPaymentsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query BusinessLoanRecords (as a Stream and as a Future).
+Stream<List<BusinessLoanRecord>> queryBusinessLoanRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        BusinessLoanRecord.collection, BusinessLoanRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<BusinessLoanRecord>> queryBusinessLoanRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        BusinessLoanRecord.collection, BusinessLoanRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

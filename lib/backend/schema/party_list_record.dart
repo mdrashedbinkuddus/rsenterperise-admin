@@ -18,16 +18,12 @@ abstract class PartyListRecord
   int get phone;
 
   @nullable
-  String get image;
-
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(PartyListRecordBuilder builder) => builder
     ..name = ''
-    ..phone = 0
-    ..image = '';
+    ..phone = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('party_list');
@@ -53,11 +49,9 @@ abstract class PartyListRecord
 Map<String, dynamic> createPartyListRecordData({
   String name,
   int phone,
-  String image,
 }) =>
     serializers.toFirestore(
         PartyListRecord.serializer,
         PartyListRecord((p) => p
           ..name = name
-          ..phone = phone
-          ..image = image));
+          ..phone = phone));

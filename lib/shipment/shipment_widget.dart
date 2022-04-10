@@ -1,11 +1,15 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../business_loan/business_loan_widget.dart';
+import '../components/add_shipment_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../shipment_details/shipment_details_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ShipmentWidget extends StatefulWidget {
@@ -27,14 +31,41 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          'Shipment',
+          'Shipments',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF232323),
                 fontSize: 22,
               ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+            child: InkWell(
+              onTap: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        height: 350,
+                        child: AddShipmentWidget(),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Icon(
+                Icons.library_add,
+                color: Colors.black,
+                size: 26,
+              ),
+            ),
+          ),
+        ],
         centerTitle: false,
         elevation: 2,
       ),
@@ -104,7 +135,10 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                               return ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: Image.network(
-                                  drawerUserRecord.photoUrl,
+                                  valueOrDefault<String>(
+                                    drawerUserRecord.photoUrl,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/r-s-enterprise-admin-ghscow/assets/ffgkx5xuwf47/logo.png',
+                                  ),
                                   width: 60,
                                   height: 60,
                                   fit: BoxFit.cover,
@@ -145,26 +179,29 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'PartyList'),
+                                child: NavBarPage(initialPage: 'Payments'),
                               ),
                             );
                           },
                           child: ListTile(
                             leading: Icon(
-                              Icons.group_rounded,
-                              color: Colors.black,
+                              FFIcons.ktaka,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              size: 24,
                             ),
                             title: Text(
-                              'Party',
+                              'Payments',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
                                         color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
                             ),
                             dense: false,
                             contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 10, 0, 10),
+                                EdgeInsetsDirectional.fromSTEB(20, 5, 0, 5),
                           ),
                         ),
                         InkWell(
@@ -175,56 +212,29 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Shipment'),
+                                child: BusinessLoanWidget(),
                               ),
                             );
                           },
                           child: ListTile(
-                            leading: Icon(
-                              Icons.directions_boat_rounded,
-                              color: Colors.black,
+                            leading: FaIcon(
+                              FontAwesomeIcons.piggyBank,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              size: 24,
                             ),
                             title: Text(
-                              'Shipment',
+                              'Business Loan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
                                         color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
                             ),
                             dense: false,
                             contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 10, 0, 10),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Costs'),
-                              ),
-                            );
-                          },
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.attach_money_rounded,
-                              color: Colors.black,
-                            ),
-                            title: Text(
-                              'Costs',
-                              style:
-                                  FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                      ),
-                            ),
-                            dense: false,
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 10, 0, 10),
+                                EdgeInsetsDirectional.fromSTEB(20, 5, 0, 5),
                           ),
                         ),
                       ],
@@ -259,6 +269,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                       fontFamily: 'Poppins',
                                       color: Colors.black,
                                       fontSize: 18,
+                                      fontWeight: FontWeight.normal,
                                     ),
                           ),
                         ),
@@ -269,15 +280,18 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                               await signOut();
                               await Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInWidget(),
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: SignInWidget(),
                                 ),
                                 (r) => false,
                               );
                             },
                             child: Icon(
                               Icons.logout,
-                              color: Colors.black,
+                              color: FlutterFlowTheme.of(context).lineColor,
                               size: 24,
                             ),
                           ),
@@ -290,6 +304,123 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
             ),
           );
         },
+      ),
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+            child: StreamBuilder<List<ShipmentRecord>>(
+              stream: queryShipmentRecord(),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: SpinKitDoubleBounce(
+                        color: Colors.black,
+                        size: 50,
+                      ),
+                    ),
+                  );
+                }
+                List<ShipmentRecord> gridViewShipmentRecordList = snapshot.data;
+                return GridView.builder(
+                  padding: EdgeInsets.zero,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 2,
+                    childAspectRatio: 1.5,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  itemCount: gridViewShipmentRecordList.length,
+                  itemBuilder: (context, gridViewIndex) {
+                    final gridViewShipmentRecord =
+                        gridViewShipmentRecordList[gridViewIndex];
+                    return InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: ShipmentDetailsWidget(
+                              shipmentDetails: gridViewShipmentRecord.reference,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Shipment No.',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lato',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    gridViewShipmentRecord.shipmentNo
+                                        .toString(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Text(
+                                    '/',
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Text(
+                                    gridViewShipmentRecord.cartoonNumber,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }

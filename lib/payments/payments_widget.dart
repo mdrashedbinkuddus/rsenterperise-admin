@@ -1,7 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../business_loan/business_loan_widget.dart';
-import '../components/add_cost_widget.dart';
+import '../components/add_payment_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -12,8 +12,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CostsWidget extends StatefulWidget {
-  const CostsWidget({
+class PaymentsWidget extends StatefulWidget {
+  const PaymentsWidget({
     Key key,
     this.date,
   }) : super(key: key);
@@ -21,10 +21,10 @@ class CostsWidget extends StatefulWidget {
   final DateTime date;
 
   @override
-  _CostsWidgetState createState() => _CostsWidgetState();
+  _PaymentsWidgetState createState() => _PaymentsWidgetState();
 }
 
-class _CostsWidgetState extends State<CostsWidget> {
+class _PaymentsWidgetState extends State<PaymentsWidget> {
   DateTime datePicked;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,7 +37,7 @@ class _CostsWidgetState extends State<CostsWidget> {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          'Costs',
+          'Payments',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF232323),
@@ -51,14 +51,14 @@ class _CostsWidgetState extends State<CostsWidget> {
               onTap: () async {
                 await showModalBottomSheet(
                   isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
                   context: context,
                   builder: (context) {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 400,
-                        child: AddCostWidget(),
+                        height: 475,
+                        child: AddPaymentWidget(),
                       ),
                     );
                   },
@@ -76,6 +76,31 @@ class _CostsWidgetState extends State<CostsWidget> {
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: Container(
+                  height: 475,
+                  child: AddPaymentWidget(),
+                ),
+              );
+            },
+          );
+        },
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        elevation: 8,
+        child: Icon(
+          Icons.add_rounded,
+          color: FlutterFlowTheme.of(context).primaryColor,
+          size: 26,
+        ),
+      ),
       drawer: StreamBuilder<UserRecord>(
         stream: UserRecord.getDocument(currentUserReference),
         builder: (context, snapshot) {
@@ -438,9 +463,11 @@ class _CostsWidgetState extends State<CostsWidget> {
                               List<CostsRecord> columnCostsRecordList =
                                   snapshot.data;
                               return SingleChildScrollView(
-                                primary: false,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: List.generate(
                                       columnCostsRecordList.length,
                                       (columnIndex) {
@@ -473,23 +500,56 @@ class _CostsWidgetState extends State<CostsWidget> {
                                                           context)
                                                       .subtitle2,
                                                 ),
-                                                Text(
-                                                  formatNumber(
-                                                    columnCostsRecord.invoiceNo,
-                                                    formatType:
-                                                        FormatType.custom,
-                                                    format: 'Invoice no: ',
-                                                    locale: '',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      formatNumber(
+                                                        columnCostsRecord
+                                                            .invoiceNo,
+                                                        formatType:
+                                                            FormatType.custom,
+                                                        format: 'Invoice no: ',
+                                                        locale: '',
                                                       ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 5, 10, 5),
+                                                      child: Text(
+                                                        'Cheque',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),

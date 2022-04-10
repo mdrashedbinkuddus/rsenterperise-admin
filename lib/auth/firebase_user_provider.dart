@@ -1,19 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
 
-class RSEnterpriseAdminFirebaseUser {
-  RSEnterpriseAdminFirebaseUser(this.user);
+class RafiaEnterpriseFirebaseUser {
+  RafiaEnterpriseFirebaseUser(this.user);
   User user;
   bool get loggedIn => user != null;
 }
 
-RSEnterpriseAdminFirebaseUser currentUser;
+RafiaEnterpriseFirebaseUser currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;
-Stream<RSEnterpriseAdminFirebaseUser> rSEnterpriseAdminFirebaseUserStream() =>
+Stream<RafiaEnterpriseFirebaseUser> rafiaEnterpriseFirebaseUserStream() =>
     FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
-        .map<RSEnterpriseAdminFirebaseUser>(
-            (user) => currentUser = RSEnterpriseAdminFirebaseUser(user));
+        .map<RafiaEnterpriseFirebaseUser>(
+            (user) => currentUser = RafiaEnterpriseFirebaseUser(user));

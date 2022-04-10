@@ -19,12 +19,17 @@ abstract class CostsRecord implements Built<CostsRecord, CostsRecordBuilder> {
   double get amount;
 
   @nullable
+  @BuiltValueField(wireName: 'invoice_no')
+  int get invoiceNo;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(CostsRecordBuilder builder) => builder
     ..description = ''
-    ..amount = 0.0;
+    ..amount = 0.0
+    ..invoiceNo = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('costs');
@@ -51,10 +56,12 @@ Map<String, dynamic> createCostsRecordData({
   DateTime date,
   String description,
   double amount,
+  int invoiceNo,
 }) =>
     serializers.toFirestore(
         CostsRecord.serializer,
         CostsRecord((c) => c
           ..date = date
           ..description = description
-          ..amount = amount));
+          ..amount = amount
+          ..invoiceNo = invoiceNo));

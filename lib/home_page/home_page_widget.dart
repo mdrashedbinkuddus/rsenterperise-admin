@@ -1,11 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../business_loan/business_loan_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -104,7 +106,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               return ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: Image.network(
-                                  drawerUserRecord.photoUrl,
+                                  valueOrDefault<String>(
+                                    drawerUserRecord.photoUrl,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/r-s-enterprise-admin-ghscow/assets/ffgkx5xuwf47/logo.png',
+                                  ),
                                   width: 60,
                                   height: 60,
                                   fit: BoxFit.cover,
@@ -145,26 +150,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'PartyList'),
+                                child: NavBarPage(initialPage: 'Payments'),
                               ),
                             );
                           },
                           child: ListTile(
                             leading: Icon(
-                              Icons.group_rounded,
-                              color: Colors.black,
+                              FFIcons.ktaka,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              size: 24,
                             ),
                             title: Text(
-                              'Party',
+                              'Payments',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
                                         color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
                             ),
                             dense: false,
                             contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 10, 0, 10),
+                                EdgeInsetsDirectional.fromSTEB(20, 5, 0, 5),
                           ),
                         ),
                         InkWell(
@@ -175,56 +183,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Shipment'),
+                                child: BusinessLoanWidget(),
                               ),
                             );
                           },
                           child: ListTile(
-                            leading: Icon(
-                              Icons.directions_boat_rounded,
-                              color: Colors.black,
+                            leading: FaIcon(
+                              FontAwesomeIcons.piggyBank,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              size: 24,
                             ),
                             title: Text(
-                              'Shipment',
+                              'Business Loan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
                                         color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
                             ),
                             dense: false,
                             contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 10, 0, 10),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: NavBarPage(initialPage: 'Costs'),
-                              ),
-                            );
-                          },
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.attach_money_rounded,
-                              color: Colors.black,
-                            ),
-                            title: Text(
-                              'Costs',
-                              style:
-                                  FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                      ),
-                            ),
-                            dense: false,
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 10, 0, 10),
+                                EdgeInsetsDirectional.fromSTEB(20, 5, 0, 5),
                           ),
                         ),
                       ],
@@ -259,6 +240,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       fontFamily: 'Poppins',
                                       color: Colors.black,
                                       fontSize: 18,
+                                      fontWeight: FontWeight.normal,
                                     ),
                           ),
                         ),
@@ -269,15 +251,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               await signOut();
                               await Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInWidget(),
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: SignInWidget(),
                                 ),
                                 (r) => false,
                               );
                             },
                             child: Icon(
                               Icons.logout,
-                              color: Colors.black,
+                              color: FlutterFlowTheme.of(context).lineColor,
                               size: 24,
                             ),
                           ),

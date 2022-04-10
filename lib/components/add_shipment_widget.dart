@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddPartyWidget extends StatefulWidget {
-  const AddPartyWidget({Key key}) : super(key: key);
+class AddShipmentWidget extends StatefulWidget {
+  const AddShipmentWidget({Key key}) : super(key: key);
 
   @override
-  _AddPartyWidgetState createState() => _AddPartyWidgetState();
+  _AddShipmentWidgetState createState() => _AddShipmentWidgetState();
 }
 
-class _AddPartyWidgetState extends State<AddPartyWidget> {
+class _AddShipmentWidgetState extends State<AddShipmentWidget> {
   TextEditingController textController1;
   TextEditingController textController2;
   final formKey = GlobalKey<FormState>();
@@ -67,19 +67,18 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Add New Party',
+                          'Add New Shipment',
                           style: FlutterFlowTheme.of(context).title2,
                         ),
                         InkWell(
                           onTap: () async {
-                            final partyListCreateData =
-                                createPartyListRecordData(
-                              name: textController1.text,
-                              phone: int.parse(textController2.text),
+                            final shipmentCreateData = createShipmentRecordData(
+                              cartoonNumber: textController2.text,
+                              shipmentNo: int.parse(textController1.text),
                             );
-                            await PartyListRecord.collection
+                            await ShipmentRecord.collection
                                 .doc()
-                                .set(partyListCreateData);
+                                .set(shipmentCreateData);
                             Navigator.pop(context);
                           },
                           child: Icon(
@@ -130,7 +129,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                     controller: textController1,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Enter full name',
+                                      labelText: 'Shipment No.',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0xFFA4A4A4),
@@ -153,7 +152,6 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
-                                    keyboardType: TextInputType.number,
                                   ),
                                 ),
                                 Padding(
@@ -163,7 +161,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                     controller: textController2,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Phone Number',
+                                      labelText: 'Carton No.',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0xFFA4A4A4),
@@ -186,14 +184,6 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
-                                    keyboardType: TextInputType.number,
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return 'Please input valid 11 digital number';
-                                      }
-
-                                      return null;
-                                    },
                                   ),
                                 ),
                               ],
