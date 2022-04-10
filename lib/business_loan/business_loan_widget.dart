@@ -54,7 +54,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 475,
+                        height: 400,
                         child: AddBusinessLoanWidget(),
                       ),
                     );
@@ -83,7 +83,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
               return Padding(
                 padding: MediaQuery.of(context).viewInsets,
                 child: Container(
-                  height: 475,
+                  height: 400,
                   child: AddBusinessLoanWidget(),
                 ),
               );
