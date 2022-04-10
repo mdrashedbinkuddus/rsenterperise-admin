@@ -64,7 +64,16 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                     fontSize: 22,
                   ),
             ),
-            actions: [],
+            actions: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                child: Icon(
+                  Icons.edit_rounded,
+                  color: Colors.black,
+                  size: 26,
+                ),
+              ),
+            ],
             centerTitle: false,
             elevation: 2,
           ),
