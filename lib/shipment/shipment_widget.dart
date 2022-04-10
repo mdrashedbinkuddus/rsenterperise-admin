@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../business_loan/business_loan_widget.dart';
+import '../components/add_shipment_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -40,10 +41,28 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
         actions: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-            child: Icon(
-              Icons.library_add,
-              color: Colors.black,
-              size: 26,
+            child: InkWell(
+              onTap: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        height: 350,
+                        child: AddShipmentWidget(),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Icon(
+                Icons.library_add,
+                color: Colors.black,
+                size: 26,
+              ),
             ),
           ),
         ],
