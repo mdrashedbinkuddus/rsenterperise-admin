@@ -37,6 +37,10 @@ abstract class ShipmentRecord
   double get due;
 
   @nullable
+  @BuiltValueField(wireName: 'cartoon_number')
+  String get cartoonNumber;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -47,7 +51,8 @@ abstract class ShipmentRecord
     ..weight = 0.0
     ..rate = 0.0
     ..invoiceBill = 0.0
-    ..due = 0.0;
+    ..due = 0.0
+    ..cartoonNumber = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shipment');
@@ -77,6 +82,7 @@ Map<String, dynamic> createShipmentRecordData({
   double rate,
   double invoiceBill,
   double due,
+  String cartoonNumber,
 }) =>
     serializers.toFirestore(
         ShipmentRecord.serializer,
@@ -87,4 +93,5 @@ Map<String, dynamic> createShipmentRecordData({
           ..weight = weight
           ..rate = rate
           ..invoiceBill = invoiceBill
-          ..due = due));
+          ..due = due
+          ..cartoonNumber = cartoonNumber));

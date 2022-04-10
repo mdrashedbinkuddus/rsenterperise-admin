@@ -30,14 +30,23 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
-          'Shipment',
+          'Shipments',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF232323),
                 fontSize: 22,
               ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+            child: Icon(
+              Icons.library_add,
+              color: Colors.black,
+              size: 26,
+            ),
+          ),
+        ],
         centerTitle: false,
         elevation: 2,
       ),
@@ -282,15 +291,37 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    InkWell(
+            child: StreamBuilder<List<ShipmentRecord>>(
+              stream: queryShipmentRecord(),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: SpinKitDoubleBounce(
+                        color: Colors.black,
+                        size: 50,
+                      ),
+                    ),
+                  );
+                }
+                List<ShipmentRecord> gridViewShipmentRecordList = snapshot.data;
+                return GridView.builder(
+                  padding: EdgeInsets.zero,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 2,
+                    childAspectRatio: 1.5,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  itemCount: gridViewShipmentRecordList.length,
+                  itemBuilder: (context, gridViewIndex) {
+                    final gridViewShipmentRecord =
+                        gridViewShipmentRecordList[gridViewIndex];
+                    return InkWell(
                       onTap: () async {
                         await Navigator.push(
                           context,
@@ -310,6 +341,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                               EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -335,10 +367,10 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    );
+                  },
+                );
+              },
             ),
           ),
         ),
