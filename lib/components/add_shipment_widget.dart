@@ -73,8 +73,8 @@ class _AddShipmentWidgetState extends State<AddShipmentWidget> {
                         InkWell(
                           onTap: () async {
                             final shipmentCreateData = createShipmentRecordData(
-                              shipmentCartonNumber: textController1.text,
                               cartoonNumber: textController2.text,
+                              shipmentNo: int.parse(textController1.text),
                             );
                             await ShipmentRecord.collection
                                 .doc()

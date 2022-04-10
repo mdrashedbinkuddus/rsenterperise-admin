@@ -329,7 +329,9 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             reverseDuration: Duration(milliseconds: 0),
-                            child: ShipmentDetailsWidget(),
+                            child: ShipmentDetailsWidget(
+                              shipmentDetails: gridViewShipmentRecord.reference,
+                            ),
                           ),
                         );
                       },
@@ -353,15 +355,31 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
-                              Text(
-                                '01/103',
-                                style: FlutterFlowTheme.of(context)
-                                    .title3
-                                    .override(
-                                      fontFamily: 'Lato',
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    gridViewShipmentRecord.shipmentNo
+                                        .toString(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Text(
+                                    gridViewShipmentRecord.cartoonNumber,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),

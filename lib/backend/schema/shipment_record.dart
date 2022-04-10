@@ -12,10 +12,6 @@ abstract class ShipmentRecord
       _$shipmentRecordSerializer;
 
   @nullable
-  @BuiltValueField(wireName: 'shipment_carton_number')
-  String get shipmentCartonNumber;
-
-  @nullable
   @BuiltValueField(wireName: 'party_list')
   BuiltList<DocumentReference> get partyList;
 
@@ -41,18 +37,22 @@ abstract class ShipmentRecord
   String get cartoonNumber;
 
   @nullable
+  @BuiltValueField(wireName: 'shipment_no')
+  int get shipmentNo;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(ShipmentRecordBuilder builder) => builder
-    ..shipmentCartonNumber = ''
     ..partyList = ListBuilder()
     ..invoiceNo = 0
     ..weight = 0.0
     ..rate = 0.0
     ..invoiceBill = 0.0
     ..due = 0.0
-    ..cartoonNumber = '';
+    ..cartoonNumber = ''
+    ..shipmentNo = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shipment');
@@ -76,22 +76,22 @@ abstract class ShipmentRecord
 }
 
 Map<String, dynamic> createShipmentRecordData({
-  String shipmentCartonNumber,
   int invoiceNo,
   double weight,
   double rate,
   double invoiceBill,
   double due,
   String cartoonNumber,
+  int shipmentNo,
 }) =>
     serializers.toFirestore(
         ShipmentRecord.serializer,
         ShipmentRecord((s) => s
-          ..shipmentCartonNumber = shipmentCartonNumber
           ..partyList = null
           ..invoiceNo = invoiceNo
           ..weight = weight
           ..rate = rate
           ..invoiceBill = invoiceBill
           ..due = due
-          ..cartoonNumber = cartoonNumber));
+          ..cartoonNumber = cartoonNumber
+          ..shipmentNo = shipmentNo));
