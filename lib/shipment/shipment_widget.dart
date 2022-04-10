@@ -389,7 +389,18 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                         ),
                                   ),
                                   Text(
-                                    gridViewShipmentRecord.cartoonNumber,
+                                    '/',
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Lato',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Text(
+                                    gridViewShipmentRecord.shipmentNo
+                                        .toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .title3
                                         .override(
