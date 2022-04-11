@@ -8,7 +8,6 @@ import '../main.dart';
 import '../party_details/party_details_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,12 +15,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartyListWidget extends StatefulWidget {
-  const PartyListWidget({
-    Key key,
-    this.partyDetails,
-  }) : super(key: key);
-
-  final DocumentReference partyDetails;
+  const PartyListWidget({Key key}) : super(key: key);
 
   @override
   _PartyListWidgetState createState() => _PartyListWidgetState();
@@ -541,47 +535,26 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                             ),
                             Expanded(
                               flex: 2,
-                              child: StreamBuilder<PartyListRecord>(
-                                stream: PartyListRecord.getDocument(
-                                    widget.partyDetails),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50,
-                                        height: 50,
-                                        child: SpinKitDoubleBounce(
-                                          color: Colors.black,
-                                          size: 50,
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 20, 0),
+                                  child: AutoSizeText(
+                                    'Hello World',
+                                    textAlign: TextAlign.end,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 30,
                                         ),
-                                      ),
-                                    );
-                                  }
-                                  final containerPartyListRecord =
-                                      snapshot.data;
-                                  return Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFEEEEEE),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 20, 0),
-                                      child: AutoSizeText(
-                                        'Hello World',
-                                        textAlign: TextAlign.end,
-                                        style: FlutterFlowTheme.of(context)
-                                            .title1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 30,
-                                            ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                                  ),
+                                ),
                               ),
                             ),
                           ],
