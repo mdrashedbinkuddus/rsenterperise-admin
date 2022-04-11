@@ -286,6 +286,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       .override(
                                         fontFamily: 'Poppins',
                                         color: Color(0xFFB5B5B5),
+                                        fontWeight: FontWeight.normal,
                                       ),
                                 ),
                               ),
