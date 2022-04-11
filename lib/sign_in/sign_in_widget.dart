@@ -126,9 +126,9 @@ class _SignInWidgetState extends State<SignInWidget> {
                                           0, 40, 0, 50),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (phoneNumberController
+                                          if (desktopPhoneFieldController
                                                   .text.isEmpty ||
-                                              !phoneNumberController.text
+                                              !desktopPhoneFieldController.text
                                                   .startsWith('+')) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
@@ -142,7 +142,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                           await beginPhoneAuth(
                                             context: context,
                                             phoneNumber:
-                                                phoneNumberController.text,
+                                                desktopPhoneFieldController
+                                                    .text,
                                             onCodeSent: () async {
                                               await Navigator
                                                   .pushAndRemoveUntil(
@@ -200,82 +201,92 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 50, 0, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      final user =
-                                          await signInWithGoogle(context);
-                                      if (user == null) {
-                                        return;
-                                      }
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: NavBarPage(
-                                              initialPage: 'HomePage'),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 80,
-                                      child: Stack(
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
-                                              },
-                                              text: 'Sign in with Google',
-                                              icon: Icon(
-                                                Icons.add,
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 80,
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              final user =
+                                                  await signInWithGoogle(
+                                                      context);
+                                              if (user == null) {
+                                                return;
+                                              }
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                  reverseDuration:
+                                                      Duration(milliseconds: 0),
+                                                  child: NavBarPage(
+                                                      initialPage: 'HomePage'),
+                                                ),
+                                                (r) => false,
+                                              );
+                                            },
+                                            text: 'Sign in with Google',
+                                            icon: Icon(
+                                              Icons.add,
+                                              color: Colors.transparent,
+                                              size: 20,
+                                            ),
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 80,
+                                              color: Colors.white,
+                                              textStyle: GoogleFonts.getFont(
+                                                'Roboto',
+                                                color: Color(0xFF606060),
+                                                fontSize: 25,
+                                              ),
+                                              elevation: 4,
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
-                                                size: 20,
+                                                width: 0,
                                               ),
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 80,
-                                                color: Colors.white,
-                                                textStyle: GoogleFonts.getFont(
-                                                  'Roboto',
-                                                  color: Color(0xFF606060),
-                                                  fontSize: 25,
-                                                ),
-                                                elevation: 4,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 0,
-                                                ),
-                                                borderRadius: 12,
-                                              ),
+                                              borderRadius: 12,
                                             ),
                                           ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(-0.83, 0),
-                                            child: Container(
-                                              width: 50,
-                                              height: 50,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.network(
-                                                'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                                fit: BoxFit.contain,
-                                              ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.83, 0),
+                                          child: Container(
+                                            width: 50,
+                                            height: 50,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                                              fit: BoxFit.contain,
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 120, 0, 0),
+                                child: Text(
+                                  '© 2022 Rafia Enterprise',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFFB5B5B5),
+                                      ),
                                 ),
                               ),
                             ],
@@ -347,9 +358,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              if (desktopPhoneFieldController.text.isEmpty ||
-                                  !desktopPhoneFieldController.text
-                                      .startsWith('+')) {
+                              if (phoneNumberController.text.isEmpty ||
+                                  !phoneNumberController.text.startsWith('+')) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -360,7 +370,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                               }
                               await beginPhoneAuth(
                                 context: context,
-                                phoneNumber: desktopPhoneFieldController.text,
+                                phoneNumber: phoneNumberController.text,
                                 onCodeSent: () async {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
