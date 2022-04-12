@@ -17,63 +17,75 @@ abstract class FlutterFlowTheme {
 
   Color primaryBtnText;
   Color lineColor;
+  Color accent;
+  Color accentSecond;
+  Color accentThird;
+  Color negativeOne;
+  Color negativeTwo;
+  Color buttonTextColor;
 
   TextStyle get title1 => GoogleFonts.getFont(
-        'Poppins',
+        'Source Sans Pro',
+        color: primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 36,
+      );
+  TextStyle get title2 => GoogleFonts.getFont(
+        'Source Sans Pro',
+        color: secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 28,
+      );
+  TextStyle get title3 => GoogleFonts.getFont(
+        'Source Sans Pro',
         color: primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24,
       );
-  TextStyle get title2 => GoogleFonts.getFont(
-        'Poppins',
-        color: secondaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 22,
-      );
-  TextStyle get title3 => GoogleFonts.getFont(
-        'Poppins',
-        color: primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 20,
-      );
   TextStyle get subtitle1 => GoogleFonts.getFont(
-        'Poppins',
+        'Source Sans Pro',
         color: primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: 24,
       );
   TextStyle get subtitle2 => GoogleFonts.getFont(
-        'Poppins',
+        'Source Sans Pro',
         color: secondaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        fontSize: 20,
       );
   TextStyle get bodyText1 => GoogleFonts.getFont(
-        'Poppins',
+        'Source Sans Pro',
         color: primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        fontSize: 18,
       );
   TextStyle get bodyText2 => GoogleFonts.getFont(
-        'Poppins',
+        'Source Sans Pro',
         color: secondaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        fontSize: 16,
       );
 }
 
 class LightModeTheme extends FlutterFlowTheme {
-  Color primaryColor = const Color(0xFFFFFFFF);
-  Color secondaryColor = const Color(0xFF39D2C0);
-  Color tertiaryColor = const Color(0xFFEE8B60);
-  Color alternate = const Color(0xFFFF5963);
-  Color primaryBackground = const Color(0xFFF1F4F8);
-  Color secondaryBackground = const Color(0xFFFFFFFF);
-  Color primaryText = const Color(0xFF101213);
-  Color secondaryText = const Color(0xFF232323);
+  Color primaryColor = const Color(0xFF4510AD);
+  Color secondaryColor = const Color(0xFF5D21D2);
+  Color tertiaryColor = const Color(0xFF8646F8);
+  Color alternate = const Color(0xFFA97CF8);
+  Color primaryBackground = const Color(0xFFE9EDF1);
+  Color secondaryBackground = const Color(0xFFF5F7FA);
+  Color primaryText = const Color(0xFF18212A);
+  Color secondaryText = const Color(0xFF212D38);
 
   Color primaryBtnText = Color(0xFF000000);
   Color lineColor = Color(0xFFA8A8A8);
+  Color accent = Color(0xFF0079E0);
+  Color accentSecond = Color(0xFF008BFF);
+  Color accentThird = Color(0xFFE3F1FD);
+  Color negativeOne = Color(0xFFEB1600);
+  Color negativeTwo = Color(0xFFFC1A1A);
+  Color buttonTextColor = Color(0xFFFFFFFF);
 }
 
 extension TextStyleHelper on TextStyle {

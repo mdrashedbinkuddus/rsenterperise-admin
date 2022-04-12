@@ -92,7 +92,7 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Source Sans Pro',
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                   ),

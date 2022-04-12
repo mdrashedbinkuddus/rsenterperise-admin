@@ -149,7 +149,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -182,7 +182,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),

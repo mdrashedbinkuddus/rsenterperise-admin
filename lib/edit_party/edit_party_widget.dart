@@ -81,7 +81,7 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
             title: Text(
               'Edit Party Details',
               style: FlutterFlowTheme.of(context).title3.override(
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Source Sans Pro',
                     fontWeight: FontWeight.w500,
                   ),
             ),
@@ -144,7 +144,7 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
                               EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Source Sans Pro',
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -175,7 +175,7 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
                               EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Source Sans Pro',
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),

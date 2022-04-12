@@ -36,7 +36,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
         title: Text(
           'Business Loan',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Source Sans Pro',
                 color: Color(0xFF232323),
                 fontSize: 22,
               ),
@@ -181,7 +181,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                             drawerUserRecord.displayName,
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       fontSize: 14,
                                     ),
                           ),
@@ -221,7 +221,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                               'Payments',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -254,7 +254,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                               'Business Loan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -294,7 +294,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                             'Logout',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.normal,
@@ -377,7 +377,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Source Sans Pro',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryColor,
@@ -392,7 +392,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Source Sans Pro',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryColor,
@@ -407,7 +407,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Source Sans Pro',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryColor,
@@ -472,7 +472,8 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1
                                                         .override(
-                                                          fontFamily: 'Poppins',
+                                                          fontFamily:
+                                                              'Source Sans Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBtnText,
@@ -486,7 +487,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                               flex: 1,
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'd/M/y',
+                                                    'Md',
                                                     columnBusinessLoanRecord
                                                         .dateOfTaken),
                                                 textAlign: TextAlign.center,
@@ -494,7 +495,8 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1
                                                         .override(
-                                                          fontFamily: 'Poppins',
+                                                          fontFamily:
+                                                              'Source Sans Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBtnText,
@@ -518,7 +520,8 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1
                                                         .override(
-                                                          fontFamily: 'Poppins',
+                                                          fontFamily:
+                                                              'Source Sans Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBtnText,
@@ -551,7 +554,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 16,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -563,7 +566,7 @@ class _BusinessLoanWidgetState extends State<BusinessLoanWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
                                       ),

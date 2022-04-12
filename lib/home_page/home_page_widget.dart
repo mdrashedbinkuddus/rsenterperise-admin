@@ -25,13 +25,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).secondaryColor),
         automaticallyImplyLeading: true,
         title: Text(
           'Dashboard',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Source Sans Pro',
                 color: Color(0xFF232323),
                 fontSize: 22,
               ),
@@ -124,7 +125,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             drawerUserRecord.displayName,
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       fontSize: 14,
                                     ),
                           ),
@@ -164,7 +165,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               'Payments',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -197,7 +198,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               'Business Loan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -237,7 +238,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             'Logout',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.normal,

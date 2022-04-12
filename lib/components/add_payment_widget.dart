@@ -98,7 +98,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Source Sans Pro',
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -124,7 +124,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                         width: 180,
                         textStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Source Sans Pro',
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.normal,
@@ -173,7 +173,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                             EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Source Sans Pro',
                             fontSize: 16,
                             fontWeight: FontWeight.normal,
                           ),
@@ -193,7 +193,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                               FlutterFlowTheme.of(context).primaryBtnText,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Source Sans Pro',
                                     color: Colors.white,
                                   ),
                           iconColor: Colors.white,
@@ -206,7 +206,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                           backgroundColor: Colors.white,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyText2.override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Source Sans Pro',
                                     color: Color(0xFF323B45),
                                   ),
                           iconColor: Color(0xFF323B45),
@@ -259,7 +259,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Source Sans Pro',
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal,
                                   ),

@@ -148,7 +148,7 @@ class _AddShipmentWidgetState extends State<AddShipmentWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -180,7 +180,7 @@ class _AddShipmentWidgetState extends State<AddShipmentWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),

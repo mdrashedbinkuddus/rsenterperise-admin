@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../party_details/party_details_widget.dart';
 import '../sign_in/sign_in_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,7 +16,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PartyListWidget extends StatefulWidget {
-  const PartyListWidget({Key key}) : super(key: key);
+  const PartyListWidget({
+    Key key,
+    this.partyDetails,
+  }) : super(key: key);
+
+  final DocumentReference partyDetails;
 
   @override
   _PartyListWidgetState createState() => _PartyListWidgetState();
@@ -52,7 +58,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
             title: Text(
               'Party',
               style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Source Sans Pro',
                     color: Color(0xFF232323),
                     fontSize: 22,
                   ),
@@ -176,7 +182,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       fontSize: 14,
                                     ),
                               ),
@@ -217,7 +223,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -251,7 +257,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -293,7 +299,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.normal,
@@ -428,7 +434,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                                               .title1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Poppins',
+                                                                    'Source Sans Pro',
                                                                 fontSize: 18,
                                                               ),
                                                     ),
@@ -542,6 +548,10 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                                   ),
                                                   tileColor: Color(0xFFF5F5F5),
                                                   dense: false,
+                                                  contentPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                              20, 15, 20, 15),
                                                 ),
                                               ),
                                             );
@@ -586,20 +596,51 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                               : null;
                                       return Container(
                                         width: 100,
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFEEEEEE),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Hello World',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
-                                            ),
-                                          ],
+                                        decoration: BoxDecoration(),
+                                        child: StreamBuilder<PartyListRecord>(
+                                          stream: PartyListRecord.getDocument(
+                                              widget.partyDetails),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50,
+                                                  height: 50,
+                                                  child: SpinKitDoubleBounce(
+                                                    color: Colors.black,
+                                                    size: 50,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            final columnPartyListRecord =
+                                                snapshot.data;
+                                            return SingleChildScrollView(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    containerPartyListRecord
+                                                        .name,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Source Sans Pro',
+                                                          fontSize: 25,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
                                         ),
                                       );
                                     },

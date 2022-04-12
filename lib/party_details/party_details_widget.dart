@@ -50,7 +50,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
             title: Text(
               partyDetailsPartyListRecord.name,
               style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Source Sans Pro',
                     color: Color(0xFF232323),
                     fontSize: 22,
                   ),
@@ -112,7 +112,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                       child: Material(
                         color: Colors.transparent,
-                        elevation: 2,
+                        elevation: 1,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -155,7 +155,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Source Sans Pro',
                                                   fontSize: 18,
                                                 ),
                                           ),

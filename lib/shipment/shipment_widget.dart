@@ -33,7 +33,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
         title: Text(
           'Shipments',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Source Sans Pro',
                 color: Color(0xFF232323),
                 fontSize: 22,
               ),
@@ -153,7 +153,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                             drawerUserRecord.displayName,
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       fontSize: 14,
                                     ),
                           ),
@@ -193,7 +193,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                               'Payments',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -226,7 +226,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                               'Business Loan',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Source Sans Pro',
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
@@ -266,7 +266,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                             'Logout',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.normal,

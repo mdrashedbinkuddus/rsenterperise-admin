@@ -32,6 +32,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -42,9 +43,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 1,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).primaryColor,
-              ),
+              decoration: BoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -242,7 +241,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Source Sans Pro',
                                           fontSize: 22,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -294,7 +293,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .title2
                                           .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Source Sans Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryColor,
                                             fontSize: 26,

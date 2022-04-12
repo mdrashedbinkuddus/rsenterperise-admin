@@ -128,7 +128,7 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Source Sans Pro',
                                       fontSize: 16,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -186,7 +186,7 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                               EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Source Sans Pro',
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -225,7 +225,7 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                               EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Source Sans Pro',
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -272,7 +272,7 @@ class _AddBusinessLoanWidgetState extends State<AddBusinessLoanWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Source Sans Pro',
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal,
                                   ),
