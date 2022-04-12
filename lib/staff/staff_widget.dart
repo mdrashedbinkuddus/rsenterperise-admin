@@ -124,23 +124,48 @@ class _StaffWidgetState extends State<StaffWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                child: AutoSizeText(
-                                  columnUserRecord.displayName,
-                                  style: FlutterFlowTheme.of(context)
-                                      .subtitle1
-                                      .override(
-                                        fontFamily: 'Source Sans Pro',
-                                        fontSize: 20,
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 0),
+                                      child: AutoSizeText(
+                                        columnUserRecord.displayName,
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Source Sans Pro',
+                                              fontSize: 20,
+                                            ),
                                       ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 15, 15, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await columnUserRecord.reference
+                                              .delete();
+                                        },
+                                        child: Icon(
+                                          Icons.delete_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .negativeTwo,
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
