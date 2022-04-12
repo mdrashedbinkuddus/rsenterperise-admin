@@ -115,48 +115,52 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         0, 40, 0, 50),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        if (desktopPhoneFieldController
-                                                .text.isEmpty ||
-                                            !desktopPhoneFieldController.text
-                                                .startsWith('+')) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                  'Phone Number is required and has to start with +.'),
-                                            ),
-                                          );
-                                          return;
-                                        }
-                                        await beginPhoneAuth(
-                                          context: context,
-                                          phoneNumber:
-                                              desktopPhoneFieldController.text,
-                                          onCodeSent: () async {
-                                            await Navigator.pushAndRemoveUntil(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child: CodeVerificationWidget(),
-                                              ),
-                                              (r) => false,
-                                            );
-                                          },
-                                        );
-
-                                        if ((phoneNumberController.text) !=
+                                        if ((desktopPhoneFieldController
+                                                .text) ==
                                             '+8801977654275') {
+                                          if (desktopPhoneFieldController
+                                                  .text.isEmpty ||
+                                              !desktopPhoneFieldController.text
+                                                  .startsWith('+')) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                    'Phone Number is required and has to start with +.'),
+                                              ),
+                                            );
+                                            return;
+                                          }
+                                          await beginPhoneAuth(
+                                            context: context,
+                                            phoneNumber:
+                                                desktopPhoneFieldController
+                                                    .text,
+                                            onCodeSent: () async {
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                  reverseDuration:
+                                                      Duration(milliseconds: 0),
+                                                  child:
+                                                      CodeVerificationWidget(),
+                                                ),
+                                                (r) => false,
+                                              );
+                                            },
+                                          );
+                                        } else {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
                                                 title: Text('Not Authorised'),
                                                 content: Text(
-                                                    'Please ask your boss to give you access'),
+                                                    'You are not verified'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
