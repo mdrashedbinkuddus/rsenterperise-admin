@@ -132,7 +132,12 @@ class _StaffWidgetState extends State<StaffWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: AutoSizeText(
                                   columnUserRecord.displayName,
-                                  style: FlutterFlowTheme.of(context).title3,
+                                  style: FlutterFlowTheme.of(context)
+                                      .subtitle1
+                                      .override(
+                                        fontFamily: 'Source Sans Pro',
+                                        fontSize: 20,
+                                      ),
                                 ),
                               ),
                             ],
