@@ -29,6 +29,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         iconTheme:
             IconThemeData(color: FlutterFlowTheme.of(context).secondaryColor),
         automaticallyImplyLeading: true,
+        leading: InkWell(
+          onTap: () async {
+            scaffoldKey.currentState.openDrawer();
+          },
+          child: Icon(
+            Icons.menu_rounded,
+            color: FlutterFlowTheme.of(context).primaryColor,
+            size: 26,
+          ),
+        ),
         title: Text(
           'Dashboard',
           style: FlutterFlowTheme.of(context).title2.override(
