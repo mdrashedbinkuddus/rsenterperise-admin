@@ -65,9 +65,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                               'Rafia Enterprise',
                               style:
                                   FlutterFlowTheme.of(context).title1.override(
-                                        fontFamily: 'Montserrat',
+                                        fontFamily: 'Source Sans Pro',
                                         fontSize: 60,
-                                        fontWeight: FontWeight.w600,
                                       ),
                             ),
                             Form(
