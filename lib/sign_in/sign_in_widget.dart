@@ -172,7 +172,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                               );
                                             },
                                           );
-                                          return;
                                         }
                                       },
                                       text: 'Verify Phone',
@@ -204,8 +203,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                             ),
                             Divider(
                               thickness: 2,
-                              indent: 250,
-                              endIndent: 250,
+                              indent: 200,
+                              endIndent: 200,
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                             Align(
@@ -322,6 +321,8 @@ class _SignInWidgetState extends State<SignInWidget> {
               ),
             if (responsiveVisibility(
               context: context,
+              tablet: false,
+              tabletLandscape: false,
               desktop: false,
             ))
               Column(

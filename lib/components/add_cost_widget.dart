@@ -33,7 +33,7 @@ class _AddCostWidgetState extends State<AddCostWidget> {
       width: MediaQuery.of(context).size.width,
       height: 450,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0),
           bottomRight: Radius.circular(0),

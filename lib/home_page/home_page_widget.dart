@@ -64,75 +64,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Material(
-                  color: Colors.transparent,
-                  elevation: 1,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEEEEEE),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 1,
-                          color: FlutterFlowTheme.of(context).lineColor,
-                          offset: Offset(0, 1),
-                        )
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                          child: StreamBuilder<UserRecord>(
-                            stream: UserRecord.getDocument(
-                                drawerUserRecord.reference),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: SpinKitDoubleBounce(
-                                      color: Colors.black,
-                                      size: 50,
-                                    ),
-                                  ),
-                                );
-                              }
-                              final imageUserRecord = snapshot.data;
-                              return ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  valueOrDefault<String>(
-                                    drawerUserRecord.photoUrl,
-                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/r-s-enterprise-admin-ghscow/assets/ffgkx5xuwf47/logo.png',
-                                  ),
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                          child: Text(
-                            drawerUserRecord.displayName,
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Source Sans Pro',
-                                      fontSize: 14,
-                                    ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                Image.asset(
+                  'assets/images/airplane-flying-above-the-clouds.jpg',
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  fit: BoxFit.cover,
                 ),
                 Expanded(
                   child: Container(

@@ -37,7 +37,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
       width: MediaQuery.of(context).size.width,
       height: 4475,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primaryColor,
+        color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0),
           bottomRight: Radius.circular(0),
