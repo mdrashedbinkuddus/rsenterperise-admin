@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../sign_in/sign_in_widget.dart';
+import '../staff/staff_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -142,6 +143,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             title: Text(
                               'Business Loan',
+                              style:
+                                  FlutterFlowTheme.of(context).title3.override(
+                                        fontFamily: 'Source Sans Pro',
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                            ),
+                            dense: false,
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(20, 5, 0, 5),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                                reverseDuration: Duration(milliseconds: 0),
+                                child: StaffWidget(),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.work_rounded,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              size: 24,
+                            ),
+                            title: Text(
+                              'Staff Details',
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Source Sans Pro',
