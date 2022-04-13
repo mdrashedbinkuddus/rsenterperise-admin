@@ -48,7 +48,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             iconTheme: IconThemeData(color: Colors.black),
             automaticallyImplyLeading: true,
             title: Text(
@@ -69,7 +69,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                 child: Icon(
                   Icons.edit_rounded,
-                  color: Colors.black,
+                  color: FlutterFlowTheme.of(context).primaryColor,
                   size: 26,
                 ),
               ),

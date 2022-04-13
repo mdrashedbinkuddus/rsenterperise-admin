@@ -207,7 +207,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
+                                              .primaryText,
                                           width: 3,
                                         ),
                                         borderRadius: BorderRadius.circular(5),
@@ -215,7 +215,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
+                                              .primaryText,
                                           width: 3,
                                         ),
                                         borderRadius: BorderRadius.circular(5),
@@ -238,13 +238,8 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                                                 )
                                               : null,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Source Sans Pro',
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).subtitle1,
                                     keyboardType: TextInputType.phone,
                                   ),
                                 ),
@@ -289,13 +284,14 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 80,
-                                      color: Color(0xFF001452),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .title2
                                           .override(
                                             fontFamily: 'Source Sans Pro',
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                                .buttonTextColor,
                                             fontSize: 26,
                                           ),
                                       elevation: 5,

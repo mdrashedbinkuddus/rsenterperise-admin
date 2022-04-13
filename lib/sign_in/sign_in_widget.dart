@@ -56,7 +56,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                       ),
                       alignment: AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(150, 0, 150, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(100, 0, 100, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -259,7 +259,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                               color: Colors.transparent,
                                               width: 0,
                                             ),
-                                            borderRadius: 12,
+                                            borderRadius: 5,
                                           ),
                                         ),
                                       ),

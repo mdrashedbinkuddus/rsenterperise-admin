@@ -33,7 +33,7 @@ class _CostsWidgetState extends State<CostsWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
@@ -66,7 +66,7 @@ class _CostsWidgetState extends State<CostsWidget> {
               },
               child: Icon(
                 Icons.add,
-                color: Colors.black,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 26,
               ),
             ),

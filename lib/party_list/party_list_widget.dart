@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../business_loan/business_loan_widget.dart';
 import '../components/add_party_widget.dart';
-import '../components/empty_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -10,7 +9,6 @@ import '../party_details/party_details_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,7 +50,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             iconTheme: IconThemeData(color: Colors.black),
             automaticallyImplyLeading: true,
             title: Text(
@@ -86,7 +84,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                   },
                   child: Icon(
                     Icons.person_add_rounded,
-                    color: Colors.black,
+                    color: FlutterFlowTheme.of(context).primaryColor,
                     size: 26,
                   ),
                 ),
@@ -479,176 +477,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    width: 100,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.9,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFEEEEEE),
-                                    ),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final partyLisy =
-                                            partyListPartyListRecordList
-                                                    ?.toList() ??
-                                                [];
-                                        if (partyLisy.isEmpty) {
-                                          return Center(
-                                            child: EmptyWidget(),
-                                          );
-                                        }
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: partyLisy.length,
-                                          itemBuilder:
-                                              (context, partyLisyIndex) {
-                                            final partyLisyItem =
-                                                partyLisy[partyLisyIndex];
-                                            return Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 10),
-                                              child: Slidable(
-                                                actionPane:
-                                                    const SlidableScrollActionPane(),
-                                                secondaryActions: [
-                                                  IconSlideAction(
-                                                    caption: 'Share',
-                                                    color: Colors.blue,
-                                                    icon: Icons.share,
-                                                    onTap: () {
-                                                      print(
-                                                          'SlidableActionWidget pressed ...');
-                                                    },
-                                                  ),
-                                                ],
-                                                child: ListTile(
-                                                  title: Text(
-                                                    'Lorem ipsum dolor...',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .title1,
-                                                  ),
-                                                  subtitle: Text(
-                                                    'Lorem ipsum dolor...',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .subtitle2,
-                                                  ),
-                                                  trailing: Icon(
-                                                    Icons.arrow_forward_ios,
-                                                    color: Color(0xFF303030),
-                                                    size: 20,
-                                                  ),
-                                                  tileColor: Color(0xFFF5F5F5),
-                                                  dense: false,
-                                                  contentPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                              20, 15, 20, 15),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: StreamBuilder<List<PartyListRecord>>(
-                                    stream: queryPartyListRecord(
-                                      singleRecord: true,
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: SpinKitDoubleBounce(
-                                              color: Colors.black,
-                                              size: 50,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<PartyListRecord>
-                                          containerPartyListRecordList =
-                                          snapshot.data;
-                                      // Return an empty Container when the document does not exist.
-                                      if (snapshot.data.isEmpty) {
-                                        return Container();
-                                      }
-                                      final containerPartyListRecord =
-                                          containerPartyListRecordList
-                                                  .isNotEmpty
-                                              ? containerPartyListRecordList
-                                                  .first
-                                              : null;
-                                      return Container(
-                                        width: 100,
-                                        decoration: BoxDecoration(),
-                                        child: StreamBuilder<PartyListRecord>(
-                                          stream: PartyListRecord.getDocument(
-                                              widget.partyDetails),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50,
-                                                  height: 50,
-                                                  child: SpinKitDoubleBounce(
-                                                    color: Colors.black,
-                                                    size: 50,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            final columnPartyListRecord =
-                                                snapshot.data;
-                                            return SingleChildScrollView(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    containerPartyListRecord
-                                                        .name,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Source Sans Pro',
-                                                          fontSize: 25,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                          children: [],
                         ),
                       ),
                     ),
