@@ -530,13 +530,58 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                       ),
                       Expanded(
                         flex: 3,
-                        child: Container(
-                          width: 100,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                        child: StreamBuilder<List<PartyListRecord>>(
+                          stream: queryPartyListRecord(
+                            singleRecord: true,
                           ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitDoubleBounce(
+                                    color: Colors.black,
+                                    size: 50,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<PartyListRecord> containerPartyListRecordList =
+                                snapshot.data;
+                            // Return an empty Container when the document does not exist.
+                            if (snapshot.data.isEmpty) {
+                              return Container();
+                            }
+                            final containerPartyListRecord =
+                                containerPartyListRecordList.isNotEmpty
+                                    ? containerPartyListRecordList.first
+                                    : null;
+                            return Container(
+                              width: 100,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20, 20, 20, 20),
+                                    child: Text(
+                                      containerPartyListRecord.name,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
