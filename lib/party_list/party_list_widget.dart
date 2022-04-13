@@ -481,7 +481,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                       columnPartyListRecordList[columnIndex];
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 10),
+                                        0, 5, 0, 5),
                                     child: Slidable(
                                       actionPane:
                                           const SlidableScrollActionPane(),
@@ -513,8 +513,12 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                               .primaryText,
                                           size: 20,
                                         ),
-                                        tileColor: Color(0xFFF5F5F5),
+                                        tileColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                         dense: false,
+                                        contentPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                20, 10, 20, 10),
                                       ),
                                     ),
                                   );
