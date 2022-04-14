@@ -360,6 +360,8 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Source Sans Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .buttonTextColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                   ),

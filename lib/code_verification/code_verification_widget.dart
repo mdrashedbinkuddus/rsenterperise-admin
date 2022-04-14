@@ -63,20 +63,18 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                         hintText: '000000',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.black,
-                            width: 2,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.black,
-                            width: 2,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        filled: true,
-                        fillColor: Colors.white,
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                         suffixIcon: phoneCodeController.text.isNotEmpty
@@ -94,8 +92,8 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Lexend Deca',
-                            color: Colors.black,
-                            fontSize: 14,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 18,
                             fontWeight: FontWeight.normal,
                           ),
                     ),
@@ -135,15 +133,16 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                       options: FFButtonOptions(
                         width: 200,
                         height: 50,
-                        color: Colors.white,
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                        elevation: 5,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .subtitle2
+                            .override(
+                              fontFamily: 'Lexend Deca',
+                              color:
+                                  FlutterFlowTheme.of(context).buttonTextColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1,

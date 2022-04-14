@@ -371,6 +371,8 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Lato',
+                                      color: FlutterFlowTheme.of(context)
+                                          .buttonTextColor,
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
@@ -384,6 +386,8 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                         .title3
                                         .override(
                                           fontFamily: 'Lato',
+                                          color: FlutterFlowTheme.of(context)
+                                              .buttonTextColor,
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
                                         ),

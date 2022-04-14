@@ -18,6 +18,7 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
   String dropDownValue;
   TextEditingController emailController;
   TextEditingController nameOfStaffController;
+  TextEditingController staffPhoneNumberController;
   TextEditingController paswordController;
   bool paswordVisibility;
 
@@ -26,6 +27,7 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
     super.initState();
     emailController = TextEditingController();
     nameOfStaffController = TextEditingController();
+    staffPhoneNumberController = TextEditingController();
     paswordController = TextEditingController();
     paswordVisibility = false;
   }
@@ -72,6 +74,7 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                     final userCreateData = createUserRecordData(
                       displayName: nameOfStaffController.text,
                       rule: dropDownValue,
+                      phoneNumber: staffPhoneNumberController.text,
                     );
                     await UserRecord.collection
                         .doc(user.uid)
@@ -86,33 +89,6 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                   ),
                 ),
               ],
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-              child: TextFormField(
-                controller: emailController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                ),
-                style: FlutterFlowTheme.of(context).bodyText1,
-                keyboardType: TextInputType.emailAddress,
-              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 20),
@@ -139,6 +115,60 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                 ),
                 style: FlutterFlowTheme.of(context).bodyText1,
                 keyboardType: TextInputType.name,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              child: TextFormField(
+                controller: staffPhoneNumberController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Staff Phone Number',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                ),
+                style: FlutterFlowTheme.of(context).bodyText1,
+                keyboardType: TextInputType.phone,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              child: TextFormField(
+                controller: emailController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                ),
+                style: FlutterFlowTheme.of(context).bodyText1,
+                keyboardType: TextInputType.emailAddress,
               ),
             ),
             Padding(

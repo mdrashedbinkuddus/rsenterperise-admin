@@ -117,7 +117,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       onPressed: () async {
                                         if ((desktopPhoneFieldController
                                                 .text) ==
-                                            '+8801977654275') {
+                                            (currentPhoneNumber)) {
                                           if (desktopPhoneFieldController
                                                   .text.isEmpty ||
                                               !desktopPhoneFieldController.text
@@ -360,6 +360,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                  20, 24, 20, 24),
                               suffixIcon: Icon(
                                 Icons.phone,
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -401,8 +403,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                           },
                           text: 'Get OTP',
                           options: FFButtonOptions(
-                            width: 130,
-                            height: 40,
+                            width: 200,
+                            height: 50,
                             color: FlutterFlowTheme.of(context).primaryColor,
                             textStyle:
                                 FlutterFlowTheme.of(context).subtitle2.override(

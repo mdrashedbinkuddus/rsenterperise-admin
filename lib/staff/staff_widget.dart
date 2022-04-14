@@ -55,7 +55,7 @@ class _StaffWidgetState extends State<StaffWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 400,
+                        height: MediaQuery.of(context).size.height * 0.8,
                         child: AddStaffWidget(),
                       ),
                     );
