@@ -119,16 +119,14 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                         child: Container(
                           width: 100,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primaryColor,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             boxShadow: [
                               BoxShadow(
                                 color: FlutterFlowTheme.of(context).lineColor,
                               )
                             ],
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: Colors.white,
-                            ),
                           ),
                           child: Padding(
                             padding:
@@ -195,6 +193,59 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                 ),
                               ],
                             ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(),
+                        child: DefaultTabController(
+                          length: 4,
+                          initialIndex: 0,
+                          child: Column(
+                            children: [
+                              TabBar(
+                                isScrollable: true,
+                                labelColor:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                unselectedLabelColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                labelPadding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                                labelStyle:
+                                    FlutterFlowTheme.of(context).bodyText1,
+                                indicatorColor:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                tabs: [
+                                  Tab(
+                                    text: 'Details',
+                                  ),
+                                  Tab(
+                                    text: 'Current Shipment',
+                                  ),
+                                  Tab(
+                                    text: 'Finance',
+                                  ),
+                                  Tab(
+                                    text: 'History',
+                                  ),
+                                ],
+                              ),
+                              Expanded(
+                                child: TabBarView(
+                                  children: [
+                                    Container(),
+                                    Container(),
+                                    Container(),
+                                    Container(),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

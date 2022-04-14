@@ -174,51 +174,52 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 30),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                      child: Text(
-                        'Logout',
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Source Sans Pro',
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal,
-                            ),
+              height: MediaQuery.of(context).size.height * 0.07,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              alignment: AlignmentDirectional(0, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                    child: Text(
+                      'Logout',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Source Sans Pro',
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        await signOut();
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: SigninAndSignupWidget(),
+                          ),
+                          (r) => false,
+                        );
+                      },
+                      child: Icon(
+                        Icons.logout,
+                        color: FlutterFlowTheme.of(context).lineColor,
+                        size: 24,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                      child: InkWell(
-                        onTap: () async {
-                          await signOut();
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: SigninAndSignupWidget(),
-                            ),
-                            (r) => false,
-                          );
-                        },
-                        child: Icon(
-                          Icons.logout,
-                          color: FlutterFlowTheme.of(context).lineColor,
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

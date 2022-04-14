@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: FlutterFlowTheme.of(context).primaryColor,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
               child: Center(
                 child: Builder(
                   builder: (context) => Image.asset(
