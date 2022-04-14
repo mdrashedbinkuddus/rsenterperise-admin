@@ -6,7 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../party_details/party_details_widget.dart';
-import '../sign_in/sign_in_widget.dart';
+import '../signin_and_signup/signin_and_signup_widget.dart';
 import '../staff/staff_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -232,7 +232,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                               type: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
                               reverseDuration: Duration(milliseconds: 0),
-                              child: SignInWidget(),
+                              child: SigninAndSignupWidget(),
                             ),
                             (r) => false,
                           );
@@ -275,7 +275,7 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                           width: 50,
                           height: 50,
                           child: SpinKitDoubleBounce(
-                            color: Colors.black,
+                            color: FlutterFlowTheme.of(context).primaryColor,
                             size: 50,
                           ),
                         ),
@@ -403,7 +403,8 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                     width: 50,
                                     height: 50,
                                     child: SpinKitDoubleBounce(
-                                      color: Colors.black,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
                                       size: 50,
                                     ),
                                   ),
@@ -481,7 +482,8 @@ class _PartyListWidgetState extends State<PartyListWidget> {
                                   width: 50,
                                   height: 50,
                                   child: SpinKitDoubleBounce(
-                                    color: Colors.black,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 50,
                                   ),
                                 ),

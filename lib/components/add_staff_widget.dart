@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -84,14 +83,6 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                     if (user == null) {
                       return;
                     }
-
-                    final userCreateData = createUserRecordData(
-                      displayName: nameOfStaffController.text,
-                      phoneNumber: staffPhoneNumberController.text,
-                    );
-                    await UserRecord.collection
-                        .doc(user.uid)
-                        .update(userCreateData);
 
                     Navigator.pop(context);
                   },

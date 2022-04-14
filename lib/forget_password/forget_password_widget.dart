@@ -2,19 +2,18 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CodeVerificationWidget extends StatefulWidget {
-  const CodeVerificationWidget({Key key}) : super(key: key);
+class ForgetPasswordWidget extends StatefulWidget {
+  const ForgetPasswordWidget({Key key}) : super(key: key);
 
   @override
-  _CodeVerificationWidgetState createState() => _CodeVerificationWidgetState();
+  _ForgetPasswordWidgetState createState() => _ForgetPasswordWidgetState();
 }
 
-class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
+class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
   TextEditingController verificationCodeController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -64,7 +63,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                 controller: verificationCodeController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Enter Verification Code',
+                  labelText: 'Enter your email',
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primaryText,
@@ -95,33 +94,21 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                   if (verificationCodeController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Enter SMS verification code.'),
+                        content: Text(
+                          'Email required!',
+                        ),
                       ),
                     );
                     return;
                   }
-                  final phoneVerifiedUser = await verifySmsCode(
+                  await resetPassword(
+                    email: verificationCodeController.text,
                     context: context,
-                    smsCode: verificationCodeController.text,
-                  );
-                  if (phoneVerifiedUser == null) {
-                    return;
-                  }
-
-                  await Navigator.pushAndRemoveUntil(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: NavBarPage(initialPage: 'HomePage'),
-                    ),
-                    (r) => false,
                   );
                 },
-                text: 'Verify Number',
+                text: 'Get Email Verfication Code',
                 options: FFButtonOptions(
-                  width: 230,
+                  width: 260,
                   height: 50,
                   color: FlutterFlowTheme.of(context).primaryColor,
                   textStyle: FlutterFlowTheme.of(context).subtitle2.override(
@@ -133,7 +120,7 @@ class _CodeVerificationWidgetState extends State<CodeVerificationWidget> {
                     color: Colors.transparent,
                     width: 1,
                   ),
-                  borderRadius: 8,
+                  borderRadius: 5,
                 ),
               ),
             ),

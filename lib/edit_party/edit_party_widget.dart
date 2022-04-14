@@ -49,7 +49,7 @@ class _EditPartyWidgetState extends State<EditPartyWidget> {
               width: 50,
               height: 50,
               child: SpinKitDoubleBounce(
-                color: Colors.black,
+                color: FlutterFlowTheme.of(context).primaryColor,
                 size: 50,
               ),
             ),

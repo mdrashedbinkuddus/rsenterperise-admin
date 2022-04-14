@@ -5,7 +5,7 @@ import '../components/add_cost_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
-import '../sign_in/sign_in_widget.dart';
+import '../signin_and_signup/signin_and_signup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -87,7 +87,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                 width: 50,
                 height: 50,
                 child: SpinKitDoubleBounce(
-                  color: Colors.black,
+                  color: FlutterFlowTheme.of(context).primaryColor,
                   size: 50,
                 ),
               ),
@@ -132,7 +132,8 @@ class _CostsWidgetState extends State<CostsWidget> {
                                     width: 50,
                                     height: 50,
                                     child: SpinKitDoubleBounce(
-                                      color: Colors.black,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
                                       size: 50,
                                     ),
                                   ),
@@ -291,7 +292,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                                   type: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
                                   reverseDuration: Duration(milliseconds: 0),
-                                  child: SignInWidget(),
+                                  child: SigninAndSignupWidget(),
                                 ),
                                 (r) => false,
                               );
@@ -430,7 +431,8 @@ class _CostsWidgetState extends State<CostsWidget> {
                                     width: 50,
                                     height: 50,
                                     child: SpinKitDoubleBounce(
-                                      color: Colors.black,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
                                       size: 50,
                                     ),
                                   ),

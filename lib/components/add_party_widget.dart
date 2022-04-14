@@ -107,7 +107,8 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                   width: 50,
                                   height: 50,
                                   child: SpinKitDoubleBounce(
-                                    color: Colors.black,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 50,
                                   ),
                                 ),

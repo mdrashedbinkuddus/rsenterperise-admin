@@ -8,7 +8,7 @@ import 'auth/auth_util.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:rafia_enterprise/sign_in/sign_in_widget.dart';
+import 'package:rafia_enterprise/signin_and_signup/signin_and_signup_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
             )
           : currentUser.loggedIn
               ? NavBarPage()
-              : SignInWidget(),
+              : SigninAndSignupWidget(),
     );
   }
 }
