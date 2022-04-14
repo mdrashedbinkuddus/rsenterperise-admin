@@ -1,8 +1,8 @@
 import '../auth/auth_util.dart';
+import '../code_verification/code_verification_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../signin_and_signup/signin_and_signup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -107,7 +107,7 @@ class _PhoneSignInWidgetState extends State<PhoneSignInWidget> {
                           type: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
                           reverseDuration: Duration(milliseconds: 0),
-                          child: SigninAndSignupWidget(),
+                          child: CodeVerificationWidget(),
                         ),
                         (r) => false,
                       );
