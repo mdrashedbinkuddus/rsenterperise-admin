@@ -69,219 +69,224 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         fontSize: 60,
                                       ),
                             ),
-                            Form(
-                              key: formKey,
-                              autovalidateMode: AutovalidateMode.disabled,
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 100, 0, 0),
-                                    child: TextFormField(
-                                      controller: desktopPhoneFieldController,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Enter Phone Number',
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            width: 3,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            width: 3,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                20, 30, 20, 30),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .subtitle1,
-                                      keyboardType: TextInputType.phone,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 40, 0, 50),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        if ((desktopPhoneFieldController
-                                                .text) ==
-                                            (currentPhoneNumber)) {
-                                          if (desktopPhoneFieldController
-                                                  .text.isEmpty ||
-                                              !desktopPhoneFieldController.text
-                                                  .startsWith('+')) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                    'Phone Number is required and has to start with +.'),
-                                              ),
-                                            );
-                                            return;
-                                          }
-                                          await beginPhoneAuth(
-                                            context: context,
-                                            phoneNumber:
-                                                desktopPhoneFieldController
-                                                    .text,
-                                            onCodeSent: () async {
-                                              await Navigator
-                                                  .pushAndRemoveUntil(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child:
-                                                      CodeVerificationWidget(),
+                                  Form(
+                                    key: formKey,
+                                    autovalidateMode: AutovalidateMode.disabled,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 100, 0, 0),
+                                          child: TextFormField(
+                                            controller:
+                                                desktopPhoneFieldController,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText: 'Enter Phone Number',
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  width: 3,
                                                 ),
-                                                (r) => false,
-                                              );
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  width: 3,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                              contentPadding:
+                                                  EdgeInsetsDirectional
+                                                      .fromSTEB(20, 30, 20, 30),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1,
+                                            keyboardType: TextInputType.phone,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 40, 0, 50),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              if ((desktopPhoneFieldController
+                                                      .text) ==
+                                                  (currentPhoneNumber)) {
+                                                if (desktopPhoneFieldController
+                                                        .text.isEmpty ||
+                                                    !desktopPhoneFieldController
+                                                        .text
+                                                        .startsWith('+')) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                          'Phone Number is required and has to start with +.'),
+                                                    ),
+                                                  );
+                                                  return;
+                                                }
+                                                await beginPhoneAuth(
+                                                  context: context,
+                                                  phoneNumber:
+                                                      desktopPhoneFieldController
+                                                          .text,
+                                                  onCodeSent: () async {
+                                                    await Navigator
+                                                        .pushAndRemoveUntil(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                        reverseDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        child:
+                                                            CodeVerificationWidget(),
+                                                      ),
+                                                      (r) => false,
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Not Authorised'),
+                                                      content: Text(
+                                                          'You are not verified'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
                                             },
-                                          );
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text('Not Authorised'),
-                                                content: Text(
-                                                    'You are not verified'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        }
-                                      },
-                                      text: 'Verify Phone',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 80,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .title2
-                                            .override(
-                                              fontFamily: 'Source Sans Pro',
+                                            text: 'Verify Phone',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 80,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .buttonTextColor,
-                                              fontSize: 26,
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .title2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Source Sans Pro',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .buttonTextColor,
+                                                        fontSize: 26,
+                                                      ),
+                                              elevation: 5,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 5,
                                             ),
-                                        elevation: 5,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
+                                          ),
                                         ),
-                                        borderRadius: 5,
+                                      ],
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 50, 0, 0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 80,
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
+                                              child: FFButtonWidget(
+                                                onPressed: () {
+                                                  print('Button pressed ...');
+                                                },
+                                                text: 'Sign in with Google',
+                                                options: FFButtonOptions(
+                                                  width: double.infinity,
+                                                  height: 80,
+                                                  color: Colors.white,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .title2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Source Sans Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                      ),
+                                                  elevation: 4,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0,
+                                                  ),
+                                                  borderRadius: 5,
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -0.83, 0),
+                                              child: Container(
+                                                width: 50,
+                                                height: 50,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            Divider(
-                              thickness: 2,
-                              indent: 200,
-                              endIndent: 200,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 80,
-                                  child: Stack(
-                                    children: [
-                                      Align(
-                                        alignment: AlignmentDirectional(0, 0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            final user =
-                                                await signInWithGoogle(context);
-                                            if (user == null) {
-                                              return;
-                                            }
-                                            await Navigator.pushAndRemoveUntil(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child: NavBarPage(
-                                                    initialPage: 'HomePage'),
-                                              ),
-                                              (r) => false,
-                                            );
-                                          },
-                                          text: 'Sign in with Google',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 80,
-                                            color: Colors.white,
-                                            textStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .title2
-                                                .override(
-                                                  fontFamily: 'Source Sans Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                ),
-                                            elevation: 4,
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0,
-                                            ),
-                                            borderRadius: 5,
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.83, 0),
-                                        child: Container(
-                                          width: 50,
-                                          height: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               ),
                             ),
                             Padding(

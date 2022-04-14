@@ -49,6 +49,7 @@ class _CostsWidgetState extends State<CostsWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
             child: InkWell(
               onTap: () async {
+                // AddCostButton
                 await showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
@@ -57,7 +58,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 400,
+                        height: MediaQuery.of(context).size.height * 0.6,
                         child: AddCostWidget(),
                       ),
                     );

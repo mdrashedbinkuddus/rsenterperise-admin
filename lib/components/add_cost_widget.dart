@@ -1,5 +1,8 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -54,10 +57,23 @@ class _AddCostWidgetState extends State<AddCostWidget> {
                   'Add Cost',
                   style: FlutterFlowTheme.of(context).title2,
                 ),
-                Icon(
-                  Icons.check_rounded,
-                  color: Colors.black,
-                  size: 30,
+                InkWell(
+                  onTap: () async {
+                    // AddCost
+
+                    final costsCreateData = createCostsRecordData(
+                      date: datePicked,
+                      description: descriptionController.text,
+                      amount: double.parse(amountController.text),
+                      invoiceNo: int.parse(invoiceNumberController.text),
+                    );
+                    await CostsRecord.collection.doc().set(costsCreateData);
+                  },
+                  child: Icon(
+                    Icons.check_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  ),
                 ),
               ],
             ),
