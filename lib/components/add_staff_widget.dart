@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ class AddStaffWidget extends StatefulWidget {
 }
 
 class _AddStaffWidgetState extends State<AddStaffWidget> {
-  String dropDownValue;
   TextEditingController confirmPaswordController;
   bool confirmPaswordVisibility;
   TextEditingController emailController;
@@ -89,7 +87,6 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
 
                     final userCreateData = createUserRecordData(
                       displayName: nameOfStaffController.text,
-                      rule: dropDownValue,
                       phoneNumber: staffPhoneNumberController.text,
                     );
                     await UserRecord.collection
@@ -265,24 +262,6 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                 style: FlutterFlowTheme.of(context).bodyText1,
                 keyboardType: TextInputType.visiblePassword,
               ),
-            ),
-            FlutterFlowDropDown(
-              options: ['Accountant', 'General Staff'].toList(),
-              onChanged: (val) => setState(() => dropDownValue = val),
-              width: 180,
-              height: 50,
-              textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                    fontFamily: 'Source Sans Pro',
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-              hintText: 'Please select...',
-              fillColor: Colors.white,
-              elevation: 2,
-              borderColor: FlutterFlowTheme.of(context).secondaryText,
-              borderWidth: 0,
-              borderRadius: 5,
-              margin: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 4),
-              hidesUnderline: true,
             ),
           ],
         ),
