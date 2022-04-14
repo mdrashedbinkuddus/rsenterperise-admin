@@ -16,6 +16,8 @@ class AddStaffWidget extends StatefulWidget {
 
 class _AddStaffWidgetState extends State<AddStaffWidget> {
   String dropDownValue;
+  TextEditingController confirmPaswordController;
+  bool confirmPaswordVisibility;
   TextEditingController emailController;
   TextEditingController nameOfStaffController;
   TextEditingController staffPhoneNumberController;
@@ -25,6 +27,8 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
   @override
   void initState() {
     super.initState();
+    confirmPaswordController = TextEditingController();
+    confirmPaswordVisibility = false;
     emailController = TextEditingController();
     nameOfStaffController = TextEditingController();
     staffPhoneNumberController = TextEditingController();
@@ -62,6 +66,18 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                 ),
                 InkWell(
                   onTap: () async {
+                    if (paswordController.text !=
+                        confirmPaswordController.text) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Passwords don\'t match!',
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+
                     final user = await createAccountWithEmail(
                       context,
                       emailController.text,
@@ -199,6 +215,46 @@ class _AddStaffWidgetState extends State<AddStaffWidget> {
                     ),
                     child: Icon(
                       paswordVisibility
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
+                      color: Color(0xFF757575),
+                      size: 22,
+                    ),
+                  ),
+                ),
+                style: FlutterFlowTheme.of(context).bodyText1,
+                keyboardType: TextInputType.visiblePassword,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              child: TextFormField(
+                controller: confirmPaswordController,
+                obscureText: !confirmPaswordVisibility,
+                decoration: InputDecoration(
+                  labelText: 'Confirm Password',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  suffixIcon: InkWell(
+                    onTap: () => setState(
+                      () =>
+                          confirmPaswordVisibility = !confirmPaswordVisibility,
+                    ),
+                    child: Icon(
+                      confirmPaswordVisibility
                           ? Icons.visibility_outlined
                           : Icons.visibility_off_outlined,
                       color: Color(0xFF757575),
