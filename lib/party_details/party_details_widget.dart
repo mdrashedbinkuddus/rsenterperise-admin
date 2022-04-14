@@ -214,12 +214,13 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                                     FlutterFlowTheme.of(context).primaryColor,
                                 unselectedLabelColor:
                                     FlutterFlowTheme.of(context).secondaryText,
-                                labelPadding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                                labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 0, 10, 0),
                                 labelStyle:
                                     FlutterFlowTheme.of(context).bodyText1,
                                 indicatorColor:
                                     FlutterFlowTheme.of(context).secondaryColor,
+                                indicatorWeight: 2,
                                 tabs: [
                                   Tab(
                                     text: 'Details',
