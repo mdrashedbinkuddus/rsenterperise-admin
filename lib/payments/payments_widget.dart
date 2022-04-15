@@ -57,7 +57,7 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                     return Padding(
                       padding: MediaQuery.of(context).viewInsets,
                       child: Container(
-                        height: 475,
+                        height: MediaQuery.of(context).size.height * 0.8,
                         child: AddPaymentWidget(),
                       ),
                     );
