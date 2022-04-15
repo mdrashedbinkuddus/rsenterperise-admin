@@ -587,42 +587,47 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                               );
                             },
                           ),
-                          Divider(
-                            height: 1,
-                            thickness: 1,
-                            color: Color(0xFFA4A4A4),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    'Total',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Source Sans Pro',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                                Text(
-                                  '\$78,000',
-                                  textAlign: TextAlign.end,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Source Sans Pro',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Divider(
+                                height: 1,
+                                thickness: 1,
+                                color: Color(0xFFA4A4A4),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 15),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Total',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Source Sans Pro',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                       ),
+                                    ),
+                                    Text(
+                                      '\$78,000',
+                                      textAlign: TextAlign.end,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Source Sans Pro',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
