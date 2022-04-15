@@ -51,7 +51,6 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
               onTap: () async {
                 await showModalBottomSheet(
                   isScrollControlled: true,
-                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
                   context: context,
                   builder: (context) {
                     return Padding(
@@ -439,7 +438,8 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                 );
                               }
                               List<PartyPaymentsRecord>
-                                  columnPartyPaymentsRecordList = snapshot.data;
+                                  paymentListPartyPaymentsRecordList =
+                                  snapshot.data;
                               return SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -447,11 +447,11 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: List.generate(
-                                      columnPartyPaymentsRecordList.length,
-                                      (columnIndex) {
-                                    final columnPartyPaymentsRecord =
-                                        columnPartyPaymentsRecordList[
-                                            columnIndex];
+                                      paymentListPartyPaymentsRecordList.length,
+                                      (paymentListIndex) {
+                                    final paymentListPartyPaymentsRecord =
+                                        paymentListPartyPaymentsRecordList[
+                                            paymentListIndex];
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 10),
@@ -474,7 +474,7 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  columnPartyPaymentsRecord
+                                                  paymentListPartyPaymentsRecord
                                                       .partyName,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -486,7 +486,7 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                   children: [
                                                     Text(
                                                       formatNumber(
-                                                        columnPartyPaymentsRecord
+                                                        paymentListPartyPaymentsRecord
                                                             .invoiceNumber,
                                                         formatType:
                                                             FormatType.custom,
@@ -513,7 +513,7 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                               .fromSTEB(
                                                                   10, 5, 10, 5),
                                                       child: Text(
-                                                        columnPartyPaymentsRecord
+                                                        paymentListPartyPaymentsRecord
                                                             .paymentType,
                                                         textAlign:
                                                             TextAlign.center,
@@ -537,7 +537,7 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                             ),
                                             Text(
                                               formatNumber(
-                                                columnPartyPaymentsRecord
+                                                paymentListPartyPaymentsRecord
                                                     .paidAmount,
                                                 formatType: FormatType.custom,
                                                 currency: '৳',
