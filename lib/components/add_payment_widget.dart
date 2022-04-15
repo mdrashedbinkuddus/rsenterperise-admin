@@ -20,6 +20,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   DateTime datePicked1;
   TextEditingController paymentDateController;
   TextEditingController partyNameController;
+  TextEditingController invoiceNumberController;
   TextEditingController paymentAmountController;
   String paymentMethodValue;
   DateTime datePicked2;
@@ -30,9 +31,10 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   void initState() {
     super.initState();
     chequeNumberController = TextEditingController();
+    invoiceNumberController = TextEditingController();
     partyNameController = TextEditingController();
-    paymentDateController = TextEditingController(
-        text: dateTimeFormat('yMMMd', getCurrentTimestamp));
+    paymentDateController =
+        TextEditingController(text: dateTimeFormat('yMMMd', datePicked1));
     paymentAmountController = TextEditingController();
   }
 
@@ -72,10 +74,12 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                       partyName: partyNameController.text,
                       paidAmount: double.parse(partyNameController.text),
                       paymentType: paymentMethodValue,
+                      invoiceNumber: int.parse(invoiceNumberController.text),
                     );
                     await PartyPaymentsRecord.collection
                         .doc()
                         .set(partyPaymentsCreateData);
+                    Navigator.pop(context);
                   },
                   child: Icon(
                     Icons.check_rounded,
@@ -111,6 +115,8 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                                 keyboardType: TextInputType.datetime,
@@ -173,6 +179,37 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                               fontWeight: FontWeight.normal,
                             ),
                         keyboardType: TextInputType.name,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      child: TextFormField(
+                        controller: invoiceNumberController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Invoice Number',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFFCDCDCD),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFFCDCDCD),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Source Sans Pro',
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
                       ),
                     ),
                     TextFormField(

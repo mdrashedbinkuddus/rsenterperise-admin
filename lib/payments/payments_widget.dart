@@ -442,10 +442,11 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          StreamBuilder<List<CostsRecord>>(
-                            stream: queryCostsRecord(
-                              queryBuilder: (costsRecord) => costsRecord
-                                  .where('date', isEqualTo: widget.date),
+                          StreamBuilder<List<PartyPaymentsRecord>>(
+                            stream: queryPartyPaymentsRecord(
+                              queryBuilder: (partyPaymentsRecord) =>
+                                  partyPaymentsRecord.where('date',
+                                      isEqualTo: widget.date),
                             ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
@@ -462,8 +463,8 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                   ),
                                 );
                               }
-                              List<CostsRecord> columnCostsRecordList =
-                                  snapshot.data;
+                              List<PartyPaymentsRecord>
+                                  columnPartyPaymentsRecordList = snapshot.data;
                               return SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -471,10 +472,11 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: List.generate(
-                                      columnCostsRecordList.length,
+                                      columnPartyPaymentsRecordList.length,
                                       (columnIndex) {
-                                    final columnCostsRecord =
-                                        columnCostsRecordList[columnIndex];
+                                    final columnPartyPaymentsRecord =
+                                        columnPartyPaymentsRecordList[
+                                            columnIndex];
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 10),
@@ -497,7 +499,8 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  columnCostsRecord.description,
+                                                  columnPartyPaymentsRecord
+                                                      .partyName,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .subtitle2,
@@ -508,11 +511,12 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                   children: [
                                                     Text(
                                                       formatNumber(
-                                                        columnCostsRecord
-                                                            .invoiceNo,
+                                                        columnPartyPaymentsRecord
+                                                            .invoiceNumber,
                                                         formatType:
                                                             FormatType.custom,
-                                                        format: 'Invoice no: ',
+                                                        format:
+                                                            'Invoice No: \'',
                                                         locale: '',
                                                       ),
                                                       style:
@@ -534,7 +538,8 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                                               .fromSTEB(
                                                                   10, 5, 10, 5),
                                                       child: Text(
-                                                        'Cheque',
+                                                        columnPartyPaymentsRecord
+                                                            .paymentType,
                                                         textAlign:
                                                             TextAlign.center,
                                                         style:
@@ -557,7 +562,8 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                                             ),
                                             Text(
                                               formatNumber(
-                                                columnCostsRecord.amount,
+                                                columnPartyPaymentsRecord
+                                                    .paidAmount,
                                                 formatType: FormatType.custom,
                                                 currency: '৳',
                                                 format: '',

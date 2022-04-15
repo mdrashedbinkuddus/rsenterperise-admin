@@ -27,13 +27,18 @@ abstract class PartyPaymentsRecord
   String get partyName;
 
   @nullable
+  @BuiltValueField(wireName: 'invoice_number')
+  int get invoiceNumber;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(PartyPaymentsRecordBuilder builder) => builder
     ..paidAmount = 0.0
     ..paymentType = ''
-    ..partyName = '';
+    ..partyName = ''
+    ..invoiceNumber = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('party_payments');
@@ -62,6 +67,7 @@ Map<String, dynamic> createPartyPaymentsRecordData({
   double paidAmount,
   String paymentType,
   String partyName,
+  int invoiceNumber,
 }) =>
     serializers.toFirestore(
         PartyPaymentsRecord.serializer,
@@ -69,4 +75,5 @@ Map<String, dynamic> createPartyPaymentsRecordData({
           ..date = date
           ..paidAmount = paidAmount
           ..paymentType = paymentType
-          ..partyName = partyName));
+          ..partyName = partyName
+          ..invoiceNumber = invoiceNumber));
