@@ -417,11 +417,7 @@ class _PaymentsWidgetState extends State<PaymentsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           StreamBuilder<List<PartyPaymentsRecord>>(
-                            stream: queryPartyPaymentsRecord(
-                              queryBuilder: (partyPaymentsRecord) =>
-                                  partyPaymentsRecord.where('date',
-                                      isEqualTo: widget.date),
-                            ),
+                            stream: queryPartyPaymentsRecord(),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
