@@ -3,7 +3,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -73,6 +72,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                         paidAmount: double.parse(partyNameController.text),
                         paymentType: paymentMethodValue,
                         invoiceNumber: int.parse(invoiceNumberController.text),
+                        chequeNo: chequeNumberController.text,
                       );
                       await PartyPaymentsRecord.collection
                           .doc()
@@ -97,13 +97,13 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              functions.today().toString(),
+                              dateTimeFormat('yMMMd', datePicked),
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                             Padding(
@@ -162,7 +162,6 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal,
                                   ),
-                          keyboardType: TextInputType.name,
                         ),
                       ),
                       Padding(
