@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../signin_and_signup/signin_and_signup_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -636,14 +637,13 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                 width: 105,
                                 height: 30,
                                 decoration: BoxDecoration(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 alignment: AlignmentDirectional(0, 0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 10, 0),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     'Party Name',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
@@ -663,14 +663,14 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                   width: 50,
                                   height: 30,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                   ),
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       'I No.',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -691,14 +691,14 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                   width: 40,
                                   height: 30,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                   ),
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       'W',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -719,14 +719,14 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                   width: 50,
                                   height: 30,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                   ),
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       'R',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -746,14 +746,14 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                 child: Container(
                                   height: 30,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                   ),
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 10, 0),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       'Invoice Bill',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)

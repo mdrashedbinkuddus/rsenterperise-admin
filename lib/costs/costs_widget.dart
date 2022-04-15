@@ -409,7 +409,7 @@ class _CostsWidgetState extends State<CostsWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: double.infinity,
