@@ -154,7 +154,7 @@ class _AddPartyWidgetState extends State<AddPartyWidget> {
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
-                                    keyboardType: TextInputType.number,
+                                    keyboardType: TextInputType.name,
                                   ),
                                 ),
                                 Padding(
