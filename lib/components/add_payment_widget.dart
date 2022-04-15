@@ -1,7 +1,9 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,19 +18,22 @@ class AddPaymentWidget extends StatefulWidget {
 
 class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   DateTime datePicked1;
-  String dropDownValue;
-  DateTime datePicked2;
-  TextEditingController textController1;
+  TextEditingController paymentDateController;
+  TextEditingController partyNameController;
+  TextEditingController paymentAmountController;
   String paymentMethodValue;
-  DateTime datePicked3;
-  TextEditingController textController2;
+  DateTime datePicked2;
+  TextEditingController chequeNumberController;
   final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    chequeNumberController = TextEditingController();
+    partyNameController = TextEditingController();
+    paymentDateController = TextEditingController(
+        text: dateTimeFormat('yMMMd', getCurrentTimestamp));
+    paymentAmountController = TextEditingController();
   }
 
   @override
@@ -59,10 +64,24 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                   'Add Payments',
                   style: FlutterFlowTheme.of(context).title2,
                 ),
-                Icon(
-                  Icons.check_rounded,
-                  color: Colors.black,
-                  size: 30,
+                InkWell(
+                  onTap: () async {
+                    final partyPaymentsCreateData =
+                        createPartyPaymentsRecordData(
+                      date: datePicked1,
+                      partyName: partyNameController.text,
+                      paidAmount: double.parse(partyNameController.text),
+                      paymentType: paymentMethodValue,
+                    );
+                    await PartyPaymentsRecord.collection
+                        .doc()
+                        .set(partyPaymentsCreateData);
+                  },
+                  child: Icon(
+                    Icons.check_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  ),
                 ),
               ],
             ),
@@ -77,81 +96,87 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                   children: [
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
-                      child: InkWell(
-                        onTap: () async {
-                          await DatePicker.showDatePicker(
-                            context,
-                            showTitleActions: true,
-                            onConfirm: (date) {
-                              setState(() => datePicked1 = date);
-                            },
-                            currentTime: getCurrentTimestamp,
-                            minTime: getCurrentTimestamp,
-                          );
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              dateTimeFormat('yMMMd', datePicked1),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Source Sans Pro',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                            Padding(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
+                              child: TextFormField(
+                                controller: paymentDateController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  filled: true,
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                                keyboardType: TextInputType.datetime,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                // DatePicker
+                                await DatePicker.showDatePicker(
+                                  context,
+                                  showTitleActions: true,
+                                  onConfirm: (date) {
+                                    setState(() => datePicked1 = date);
+                                  },
+                                  currentTime: getCurrentTimestamp,
+                                  minTime: getCurrentTimestamp,
+                                );
+                              },
                               child: Icon(
                                 Icons.calendar_today_rounded,
                                 color: Colors.black,
                                 size: 26,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
-                      child: FlutterFlowDropDown(
-                        options: ['Option 1'].toList(),
-                        onChanged: (val) => setState(() => dropDownValue = val),
-                        width: 180,
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodyText1.override(
-                                  fontFamily: 'Source Sans Pro',
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                        hintText: 'Select Party...',
-                        fillColor: Colors.white,
-                        elevation: 2,
-                        borderColor: Color(0xFFCDCDCD),
-                        borderWidth: 2,
-                        borderRadius: 5,
-                        margin: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                        hidesUnderline: true,
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      child: TextFormField(
+                        controller: partyNameController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Party Name',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFFCDCDCD),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFFCDCDCD),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Source Sans Pro',
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                        keyboardType: TextInputType.name,
                       ),
                     ),
                     TextFormField(
-                      onFieldSubmitted: (_) async {
-                        await DatePicker.showDatePicker(
-                          context,
-                          showTitleActions: true,
-                          onConfirm: (date) {
-                            setState(() => datePicked2 = date);
-                          },
-                          currentTime: getCurrentTimestamp,
-                          minTime: getCurrentTimestamp,
-                        );
-                      },
-                      controller: textController1,
+                      controller: paymentAmountController,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'Amount Paid',
@@ -230,13 +255,13 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                               context,
                               showTitleActions: true,
                               onConfirm: (date) {
-                                setState(() => datePicked3 = date);
+                                setState(() => datePicked2 = date);
                               },
                               currentTime: getCurrentTimestamp,
                               minTime: getCurrentTimestamp,
                             );
                           },
-                          controller: textController2,
+                          controller: chequeNumberController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Cheque Number',
