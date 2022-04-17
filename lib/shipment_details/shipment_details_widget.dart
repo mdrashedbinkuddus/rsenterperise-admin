@@ -341,10 +341,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                         children: [
                           Text(
                             'Carton No.',
-                            style: FlutterFlowTheme.of(context).title2.override(
-                                  fontFamily: 'Lato',
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            style: FlutterFlowTheme.of(context).title3,
                           ),
                           Container(
                             width: 100,
@@ -379,11 +376,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                           children: [
                             Text(
                               'Total Weight',
-                              style:
-                                  FlutterFlowTheme.of(context).title2.override(
-                                        fontFamily: 'Lato',
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                              style: FlutterFlowTheme.of(context).title3,
                             ),
                             Container(
                               width: 100,
@@ -416,11 +409,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                           children: [
                             Text(
                               'Total Invoice Bill',
-                              style:
-                                  FlutterFlowTheme.of(context).title2.override(
-                                        fontFamily: 'Lato',
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                              style: FlutterFlowTheme.of(context).title3,
                             ),
                             Container(
                               width: 100,
@@ -634,7 +623,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: 105,
+                                width: 200,
                                 height: 30,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).alternate,
@@ -660,7 +649,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
                                 child: Container(
-                                  width: 50,
+                                  width: 70,
                                   height: 30,
                                   decoration: BoxDecoration(
                                     color:
@@ -688,7 +677,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
                                 child: Container(
-                                  width: 40,
+                                  width: 70,
                                   height: 30,
                                   decoration: BoxDecoration(
                                     color:
@@ -716,7 +705,7 @@ class _ShipmentDetailsWidgetState extends State<ShipmentDetailsWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
                                 child: Container(
-                                  width: 50,
+                                  width: 70,
                                   height: 30,
                                   decoration: BoxDecoration(
                                     color:
