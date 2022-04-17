@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import '../shipment_details/shipment_details_widget.dart';
 import '../signin_and_signup/signin_and_signup_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -366,7 +367,7 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              AutoSizeText(
                                 'Shipment No.',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -374,43 +375,45 @@ class _ShipmentWidgetState extends State<ShipmentWidget> {
                                       fontFamily: 'Lato',
                                       color: FlutterFlowTheme.of(context)
                                           .buttonTextColor,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Text(
+                                  AutoSizeText(
                                     gridViewShipmentRecord.shipmentNo
                                         .toString(),
                                     style: FlutterFlowTheme.of(context)
-                                        .title3
+                                        .subtitle1
                                         .override(
-                                          fontFamily: 'Lato',
+                                          fontFamily: 'Source Sans Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .buttonTextColor,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
                                         ),
                                   ),
                                   Text(
                                     '/',
                                     style: FlutterFlowTheme.of(context)
-                                        .title3
+                                        .subtitle1
                                         .override(
-                                          fontFamily: 'Lato',
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Source Sans Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .buttonTextColor,
+                                          fontSize: 20,
                                         ),
                                   ),
                                   Text(
                                     gridViewShipmentRecord.cartoonNumber,
                                     style: FlutterFlowTheme.of(context)
-                                        .title3
+                                        .subtitle1
                                         .override(
-                                          fontFamily: 'Lato',
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Source Sans Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .buttonTextColor,
+                                          fontSize: 20,
                                         ),
                                   ),
                                 ],

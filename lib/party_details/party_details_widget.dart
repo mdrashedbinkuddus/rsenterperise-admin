@@ -198,7 +198,7 @@ class _PartyDetailsWidgetState extends State<PartyDetailsWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                       child: Container(
                         width: 100,
                         height: 100,

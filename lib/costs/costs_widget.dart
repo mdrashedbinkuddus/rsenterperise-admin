@@ -421,7 +421,7 @@ class _CostsWidgetState extends State<CostsWidget> {
                           StreamBuilder<List<CostsRecord>>(
                             stream: queryCostsRecord(
                               queryBuilder: (costsRecord) => costsRecord
-                                  .where('date', isEqualTo: widget.date),
+                                  .where('date', isEqualTo: datePicked),
                             ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.

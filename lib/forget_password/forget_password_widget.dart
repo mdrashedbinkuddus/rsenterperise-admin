@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class ForgetPasswordWidget extends StatefulWidget {
   const ForgetPasswordWidget({Key key}) : super(key: key);
@@ -123,6 +124,14 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                   borderRadius: 5,
                 ),
               ),
+            ),
+            Lottie.network(
+              'https://assets5.lottiefiles.com/packages/lf20_4dmhu8fs.json',
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: 500,
+              fit: BoxFit.cover,
+              repeat: false,
+              animate: true,
             ),
           ],
         ),

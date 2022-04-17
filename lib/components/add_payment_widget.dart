@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,7 +20,6 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
   TextEditingController partyNameController;
   TextEditingController invoiceNumberController;
   TextEditingController paymentAmountController;
-  String paymentMethodValue;
   TextEditingController chequeNumberController;
   final formKey = GlobalKey<FormState>();
 
@@ -70,7 +68,6 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                         date: datePicked,
                         partyName: partyNameController.text,
                         paidAmount: double.parse(partyNameController.text),
-                        paymentType: paymentMethodValue,
                         invoiceNumber: int.parse(invoiceNumberController.text),
                         chequeNo: chequeNumberController.text,
                       );
@@ -226,80 +223,37 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                         keyboardType: TextInputType.number,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                        child: FlutterFlowChoiceChips(
-                          initiallySelected: paymentMethodValue != null
-                              ? [paymentMethodValue]
-                              : ['Cheque'],
-                          options: [ChipData('Cash'), ChipData('Cheque')],
-                          onChanged: (val) =>
-                              setState(() => paymentMethodValue = val.first),
-                          selectedChipStyle: ChipStyle(
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).primaryBtnText,
-                            textStyle:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Source Sans Pro',
-                                      color: Colors.white,
-                                    ),
-                            iconColor: Colors.white,
-                            iconSize: 18,
-                            labelPadding:
-                                EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
-                            elevation: 0,
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        child: TextFormField(
+                          controller: chequeNumberController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Cheque Number',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFCDCDCD),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFCDCDCD),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
                           ),
-                          unselectedChipStyle: ChipStyle(
-                            backgroundColor: Colors.white,
-                            textStyle:
-                                FlutterFlowTheme.of(context).bodyText2.override(
-                                      fontFamily: 'Source Sans Pro',
-                                      color: Color(0xFF323B45),
-                                    ),
-                            iconColor: Color(0xFF323B45),
-                            iconSize: 18,
-                            labelPadding:
-                                EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
-                            elevation: 4,
-                          ),
-                          chipSpacing: 20,
-                          multiselect: false,
-                          initialized: paymentMethodValue != null,
-                          alignment: WrapAlignment.center,
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Source Sans Pro',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                         ),
                       ),
-                      if ((paymentMethodValue) == 'Cheque')
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                          child: TextFormField(
-                            controller: chequeNumberController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Cheque Number',
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFFCDCDCD),
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFFCDCDCD),
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  15, 20, 15, 20),
-                            ),
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Source Sans Pro',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ),
                     ],
                   ),
                 ),

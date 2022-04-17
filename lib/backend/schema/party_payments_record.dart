@@ -19,10 +19,6 @@ abstract class PartyPaymentsRecord
   double get paidAmount;
 
   @nullable
-  @BuiltValueField(wireName: 'payment_type')
-  String get paymentType;
-
-  @nullable
   @BuiltValueField(wireName: 'party_name')
   String get partyName;
 
@@ -40,7 +36,6 @@ abstract class PartyPaymentsRecord
 
   static void _initializeBuilder(PartyPaymentsRecordBuilder builder) => builder
     ..paidAmount = 0.0
-    ..paymentType = ''
     ..partyName = ''
     ..invoiceNumber = 0
     ..chequeNo = '';
@@ -70,7 +65,6 @@ abstract class PartyPaymentsRecord
 Map<String, dynamic> createPartyPaymentsRecordData({
   DateTime date,
   double paidAmount,
-  String paymentType,
   String partyName,
   int invoiceNumber,
   String chequeNo,
@@ -80,7 +74,6 @@ Map<String, dynamic> createPartyPaymentsRecordData({
         PartyPaymentsRecord((p) => p
           ..date = date
           ..paidAmount = paidAmount
-          ..paymentType = paymentType
           ..partyName = partyName
           ..invoiceNumber = invoiceNumber
           ..chequeNo = chequeNo));
